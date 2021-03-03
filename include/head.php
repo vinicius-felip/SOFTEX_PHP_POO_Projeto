@@ -8,10 +8,43 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
     <title>Taxi Drive</title>
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+
+        :root {
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        :root body {
+            position: absolute;
+        }
+
+        body {
+            width: 100vw;
+        }
+
+        p.max-3l {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Largura da barra de rolagem */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        Caso qu
+    </style>
 </head>
 
-<body style="background-image: url('https://i.pinimg.com/originals/20/cc/54/20cc54a2306c09ef5a8af7f9d2b81439.jpg'); background-repeat: no-repeat; background-size: cover; background-position: botton;">
-    <nav class="navbar navbar-expand-md navbar-dark p-5 pt-3 pb-0 sticky-top bg-transparent" style="background: #ffad00;">
+<body style="background-image: url('https://i.pinimg.com/originals/20/cc/54/20cc54a2306c09ef5a8af7f9d2b81439.jpg'); background-repeat: no-repeat; background-size: cover; background-position: botton; background-attachment: fixed;">
+    <nav class="navbar navbar-expand-md navbar-dark p-5 pt-3 pb-0 bg-transparent" style="background: #ffad00;">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">
                 <img src="assets\img\logo-img.png" alt="" width="250px" class="d-inline-block align-top">
@@ -25,7 +58,7 @@
                         <a class="nav-link active" aria-current="page" href="index.php">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Viagens</a>
+                        <a class="nav-link" href="viagens.php">Lista de viagens</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pricing</a>
