@@ -4,7 +4,9 @@ namespace App\src;
 
 use \App\db\DataBase;
 
-class Onibus
+use  \PDO;
+
+class Viagem
 {
 
   /**
@@ -13,6 +15,13 @@ class Onibus
    * @var integer
    */
   public $id;
+
+  /**
+   * Empresa que está disponibilizando a viagem
+   *
+   * @var string
+   */
+  public $empresa;
 
   /**
    * Cidade de origem da viagem
@@ -57,9 +66,10 @@ class Onibus
    */
   public function cadastrar()
   {
-    $objDataBase = new DataBase('onibus');
+    $objDataBase = new DataBase('viagem');
 
     $this->id = $objDataBase->setQueryInsert([
+      'empresa' => $this->empresa,
       'origem' => $this->origem,
       'destino' => $this->destino,
       'saida' => $this->saida,
@@ -68,6 +78,16 @@ class Onibus
     ]);
   }
 
-
-  
+  /**
+   * Metodo para exibir todas as viagens disponíveis do banco de dados
+   *
+   * @param  string $where
+   * @param  string $order
+   * @param  string $limit
+   * @return array
+   */
+  public static function getViagens($where = null, $order = null,   $limit = null)
+  {
+    return (new DataBase('viagem'))->setQuerySelect($where, $order, $limit)->fetchAll(PDO::FETCH_CLASS, self::class);
+  }
 }

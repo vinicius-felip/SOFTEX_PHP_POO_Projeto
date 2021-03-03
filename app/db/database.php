@@ -2,6 +2,7 @@
 
 namespace App\db;
 
+use mysqli;
 use PDO;
 use PDOException;
 use PDOStatement;
@@ -100,12 +101,15 @@ class DataBase
     }
     
     /**
-     * Metodo que define o código SQL para inserir no banco de dados
+     * Método que define o código SQL para inserir no banco de dados
      * 
      * @param array 
      * @return integer
      */
     public function setQueryInsert($info){
+        /**
+         * Dados da query
+         */
         $campos = array_keys($info);
         $valores = array_pad([],count($campos),'?');
         
@@ -117,7 +121,30 @@ class DataBase
         $this->execute($query,array_values($info));
         return $this->conexao->lastInsertId();
     }
-    
+        
+    /**
+     * Método que define o código SQL de consulta no banco de dados
+     *
+     * @param  string $where
+     * @param  string $order
+     * @param  string $limit
+     * @return PDOStatement
+     */
+    public function setQuerySelect($where = null, $order = null, $limit = null, $campos = '*' ){
+        /**
+         * Dados da query
+         */
+        $where = strlen($where) ? 'WHERE '.$where : ''; 
+        $order = strlen($where) ? 'ORDER BY '.$where : ''; 
+        $limit = strlen($where) ? 'LIMIT '.$where : ''; 
+
+         /**
+         * Monta a query
+         */
+        $query = 'SELECT '.$campos.' FROM '.$this->tabela.' '.$where.' '.$order.' '.$limit;
+
+        return $this->execute($query);
+    }
     
 }
 
