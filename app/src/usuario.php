@@ -36,7 +36,18 @@ class Usuario
 
 class Cliente extends Usuario{
     private $cpf;
-    public $viagem;
+    public $viagensFeita;
+
+
+}
+
+class Empresa extends Usuario{
+    private $cnpj;
+    public $viagens;
+
+}
+
+class Admin extends Usuario{
 
 
 }

@@ -64,7 +64,7 @@ class Viagem
    *
    * @return boolean
    */
-  public function cadastrar()
+  public function setViagem()
   {
     $objDataBase = new DataBase('viagem');
 

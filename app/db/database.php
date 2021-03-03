@@ -2,7 +2,6 @@
 
 namespace App\db;
 
-use mysqli;
 use PDO;
 use PDOException;
 use PDOStatement;

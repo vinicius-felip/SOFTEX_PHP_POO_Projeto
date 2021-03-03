@@ -7,16 +7,15 @@ if (isset($_POST['origem'])) {
     $objViagem = new Viagem;
     $objViagem->origem = $_POST['origem'];
     $objViagem->destino = $_POST['destino'];
-    $objViagem->saida = $_POST['data']." ".$_POST['hora'].":00";
+    $objViagem->saida = $_POST['data'] . " " . $_POST['hora'] . ":00";
     $objViagem->preco = $_POST['preco'];
     $objViagem->assentos = $_POST['assentos'];
     $objViagem->empresa = 'null';
 
-    if ($objViagem->cadastrar()){
+    if ($objViagem->setViagem()) {
         header('location: index.php?status=success');
         exit;
-    }   
-    
+    }
 }
 
 include_once __DIR__ . '/include/head.php';

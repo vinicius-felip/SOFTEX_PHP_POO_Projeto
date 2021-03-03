@@ -7,7 +7,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-    <title>Taxi Drive</title>
+    <title>Bus Tour</title>
     <style>
         html {
             overflow-y: scroll;
@@ -34,12 +34,9 @@
             text-overflow: ellipsis;
         }
 
-        /* Largura da barra de rolagem */
         ::-webkit-scrollbar {
             display: none;
         }
-
-        Caso qu
     </style>
 </head>
 
@@ -52,7 +49,7 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <div class="collapse navbar-collapse justify-content-start" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php">Início</a>
@@ -60,10 +57,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="viagens.php">Lista de viagens</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
                 </ul>
             </div>
+            <button role="button" style=" border: 2px solid #ffad00" class="btn text-light" href="#">Entrar</button>
         </div>
     </nav>

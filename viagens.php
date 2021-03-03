@@ -2,6 +2,8 @@
 
 use App\src\Viagem;
 
+echo '<pre>'; print_r($_POST); echo '</pre>'; exit;
+
 require_once __DIR__.'/vendor/autoload.php';
 
 $viagens = Viagem::getViagens();
