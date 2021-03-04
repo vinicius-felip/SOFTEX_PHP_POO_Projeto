@@ -52,23 +52,45 @@ class Viagem
   public $preco;
 
   /**
-   * Número de assentos que o ônibus possui
+   * Número de assentos disponivéis que o ônibus possui
    *
    * @var integer
    */
   public $assentos;
 
 
+
   /**
-   * Método para cadastrar um novo ônibus
+   * Método que recebe o valor do POST
+   *
+   * @param  string $empresa
+   * @param  string $origem
+   * @param  string $destino
+   * @param  string $saida
+   * @param  integer $preco
+   * @param  string $assentos
+   * @return void
+   */
+  public function setValores($empresa, $origem, $destino, $saida, $preco, $assentos)
+  {
+    $this->empresa = '$empresa';
+    $this->origem = $origem;
+    $this->destino = $destino;
+    $this->saida = $saida;
+    $this->preco = $preco;
+    $this->assentos = $assentos;
+  }
+
+  /**
+   * Método que insere uma nova viagem no banco de dados
    *
    * @return boolean
    */
-  public function setViagem()
+  public function setViagemDB()
   {
     $objDataBase = new DataBase('viagem');
 
-    $this->id = $objDataBase->setQueryInsert([
+    $this->id = $objDataBase->setInsertDB([
       'empresa' => $this->empresa,
       'origem' => $this->origem,
       'destino' => $this->destino,
@@ -79,15 +101,31 @@ class Viagem
   }
 
   /**
-   * Metodo para exibir todas as viagens disponíveis do banco de dados
+   * Método que exibe as viagens disponíveis do banco de dados
    *
-   * @param  string $where
-   * @param  string $order
-   * @param  string $limit
+   * @param string $where
+   * @param string $order
+   * @param string $limit
    * @return array
    */
   public static function getViagens($where = null, $order = null,   $limit = null)
   {
-    return (new DataBase('viagem'))->setQuerySelect($where, $order, $limit)->fetchAll(PDO::FETCH_CLASS, self::class);
+    return (new DataBase('viagem'))->getSelectDB($where, $order, $limit)->fetchAll(PDO::FETCH_CLASS, self::class);
+  }
+
+  /**
+   * Método que diminuiu um assento disponivél de uma viagem quando uma compra é realizada
+   *
+   * @param integer $qnt
+   * @param integer $id
+   * @return boolean
+   */
+  public function diminuirAssento($qnt, $id)
+  {
+    $objDataBase = new DataBase('viagem');
+    if ($objDataBase->getSelectDB('id = ' . $id, null, null, 'assento')->fetchColumn() > 0) {
+      return $objDataBase->setDecrementUpdateDB('assento  = assento -' . "$qnt", 'id = ' . $id);
+    }
+    return false;
   }
 }

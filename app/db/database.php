@@ -89,62 +89,104 @@ class DataBase
      * @param  array $params
      * @return PDOStatement
      */
-    public function execute($query, $params = []){
-        try{
+    public function execute($query, $params = [])
+    {
+        try {
             $result = $this->conexao->prepare($query);
             $result->execute($params);
             return $result;
         } catch (PDOException $e) {
-            die('ERRO' . $e->getMessage());
+            die('ERRO'.$e->getCode());
         }
     }
-    
+
     /**
-     * Método que define o código SQL para inserir no banco de dados
+     * Método que insere dados no banco de dados
      * 
-     * @param array 
+     * @param array $info
      * @return integer
      */
-    public function setQueryInsert($info){
+    public function setInsertDB($info)
+    {
         /**
          * Dados da query
          */
         $campos = array_keys($info);
-        $valores = array_pad([],count($campos),'?');
-        
+        $valores = array_pad([], count($campos), '?');
+
         /**
          * Monta a query
          */
-        $query = 'INSERT INTO '.$this->tabela.' ('.implode(',',$campos).') VALUES ('.implode(',',$valores).')';
+        $query = 'INSERT INTO ' . $this->tabela . ' (' . implode(',', $campos) . ') VALUES (' . implode(',', $valores) . ')';
 
-        $this->execute($query,array_values($info));
+        $this->execute($query, array_values($info));
         return $this->conexao->lastInsertId();
     }
-        
+
     /**
-     * Método que define o código SQL de consulta no banco de dados
+     * Método que retornar dados do banco de dados
      *
      * @param  string $where
      * @param  string $order
      * @param  string $limit
      * @return PDOStatement
      */
-    public function setQuerySelect($where = null, $order = null, $limit = null, $campos = '*' ){
+    public function getSelectDB($where = null, $order = null, $limit = null, $campos = '*')
+    {
         /**
          * Dados da query
          */
-        $where = strlen($where) ? 'WHERE '.$where : ''; 
-        $order = strlen($where) ? 'ORDER BY '.$where : ''; 
-        $limit = strlen($where) ? 'LIMIT '.$where : ''; 
+        $where = strlen($where) ? 'WHERE ' . $where : '';
+        $order = strlen($order) ? 'ORDER BY ' . $order : '';
+        $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
 
-         /**
+        /**
          * Monta a query
          */
-        $query = 'SELECT '.$campos.' FROM '.$this->tabela.' '.$where.' '.$order.' '.$limit;
+        $query = 'SELECT ' . $campos . ' FROM ' . $this->tabela . ' ' . $where . ' ' . $order . ' ' . $limit;
 
         return $this->execute($query);
     }
-    
+
+    /**
+     * Método que atualiza dados do banco de dados
+     *
+     * @param  array $alterar
+     * @param  string $where
+     * @return boolean
+     */
+    public function setUpdateDB($alterar, $where)
+    {
+        /**
+         * Dados da query
+         */
+
+        $campos = array_keys($alterar);
+
+        /**
+         * Monta a query
+         */
+        $query = 'UPDATE ' . $this->tabela . ' SET ' . implode(" = ?, ", $campos) . ' = ? WHERE ' . $this->tabela . '.' . $where;
+
+        $this->execute($query, array_values($alterar));
+        return true;
+    }
+
+    /**
+     * Método que incrementa valores no banco de dados
+     *
+     * @param  string $alterar
+     * @param  string $where
+     * @return boolean
+     */
+    public function setDecrementUpdateDB($alterar, $where)
+    {
+        /**
+         * Monta a query
+         */
+        $query = 'UPDATE ' . $this->tabela . ' SET ' . $alterar . ' WHERE ' . $this->tabela . '.' . $where;
+
+        $this->execute($query);
+        return true;
+    }
 }
-
-

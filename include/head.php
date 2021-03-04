@@ -1,3 +1,10 @@
+<?php
+use \App\session\Login;
+
+Login::iniciarSession();
+?>
+
+
 <!doctype html>
 <html lang="pt-br">
 
@@ -6,7 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
     <title>Bus Tour</title>
     <style>
         html {
@@ -59,6 +65,10 @@
                     </li>
                 </ul>
             </div>
-            <button role="button" style=" border: 2px solid #ffad00" class="btn text-light" href="#">Entrar</button>
+            <?php if (isset($_SESSION['usuario']['id'])){ ?>
+            <a href="sair.php"><button role="button" style=" border: 2px solid #ffad00" class="btn text-light" >Sair</button></a>
+            <?php }else{ ?>
+            <a href="entrar.php"><button role="button" style=" border: 2px solid #ffad00" class="btn text-light" >Entrar</button></a>
+            <?php } ?>
         </div>
     </nav>

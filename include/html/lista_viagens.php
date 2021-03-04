@@ -18,37 +18,46 @@
             </div>
         </div>
         <ul class="list-group  mb-3">
-            <?php foreach ($viagens as $viagens) { ?>
-                <li class="list-group p-3 mb-1 bg-dark rounded shadow-sm">
-                    <div class="row g-3 text-light">
-                        <div class="col-2 align-self-center ms-2">
-                            <legend><?= $viagens->empresa ?></legend>
-                        </div>
-                        <div class="col-2 text-center">
-                            <legend><?= date("H:m", strtotime($viagens->saida)) ?></legend>
-                            <small><?= date("d/m/Y", strtotime($viagens->saida)) ?></small>
-                        </div>
-                        <div class="col-4 text-center ms-4">
-                            <legend><?= $viagens->origem ?></legend>
-                            <legend><?= $viagens->destino ?></legend>
-                        </div>
-                        <div class="col-1 align-self-center text-center ms-auto">
-                            <legend><?= $viagens->assento ?></legend>
-                        </div>
-                        <div class="col-2  text-center align-self-center ms-auto me-auto">
-                            <legend>R$ <?= $viagens->preco ?></legend>
-                        </div>
-                        <div class="col-auto align-self-center">
-                            <button style="color: #ffad00;" class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#detalhes<?= $viagens->id ?>" aria-expanded="false" aria-controls="detalhes<?= $viagens->id ?>"><i class="fas fa-chevron-down"></i></button>
-                        </div>
+            <?php if (!$mensagem) { ?>
+                <div class="card bg-dark text-light p-3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Ops, não achamos resultados!</h5>
+                        <p class="card-text">Não encontramos nenhum resultado para essa busca.</p>
                     </div>
-                    <div class="collapse multi-collapse" id="detalhes<?= $viagens->id ?>">
-                        <div class="card card-body">
-                            Some placeholder content for the first collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                </div>
+                <?php } else {
+                foreach ($viagens as $viagens) { ?>
+                    <li class="list-group p-3 mb-1 bg-dark rounded shadow-sm">
+                        <div class="row g-3 text-light">
+                            <div class="col-2 align-self-center ms-2">
+                                <legend><?= $viagens->empresa ?></legend>
+                            </div>
+                            <div class="col-2 text-center">
+                                <legend><?= date("H:m", strtotime($viagens->saida)) ?></legend>
+                                <small><?= date("d/m/Y", strtotime($viagens->saida)) ?></small>
+                            </div>
+                            <div class="col-4 text-center ms-4">
+                                <legend><?= $viagens->origem ?></legend>
+                                <legend><?= $viagens->destino ?></legend>
+                            </div>
+                            <div class="col-1 align-self-center text-center ms-auto">
+                                <legend><?= $viagens->assento ?></legend>
+                            </div>
+                            <div class="col-2  text-center align-self-center ms-auto me-auto">
+                                <legend>R$ <?= $viagens->preco ?></legend>
+                            </div>
+                            <div class="col-auto align-self-center">
+                                <button style="color: #ffad00;" class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#detalhes<?= $viagens->id ?>" aria-expanded="false" aria-controls="detalhes<?= $viagens->id ?>"><i class="fas fa-chevron-down"></i></button>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            <?php } ?>
+                        <div class="collapse multi-collapse" id="detalhes<?= $viagens->id ?>">
+                            <div class="card card-body">
+                                <a class="btn btn-danger" href="compra.php?id=<?= $viagens->id ?>&qnt=<?= 1 ?>"></a>
+                            </div>
+                        </div>
+                    </li>
+            <?php }
+            } ?>
         </ul>
     </div>
 </main>

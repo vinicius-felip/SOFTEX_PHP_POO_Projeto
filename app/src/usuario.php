@@ -1,53 +1,47 @@
 <?php
 
+namespace App\src;
+
+use App\db\DataBase;
+
 class Usuario
-{    
+{
     /**
-     * ID do usuario
+     * ID do usuário
      *
-     * @var mixed
+     * @var integer
      */
     public $id;
-    
+
     /**
-     * Nome do usuario
+     * Nome do usuário
      *
-     * @var mixed
+     * @var string
      */
     public $nome;
-        
+
     /**
-     * 
+     * Email do usuário
      *
-     * @var mixed
+     * @var string
      */
     public $email;
-
-    public function cadastrar(){
-        ;
+    
+    /**
+     * Senha do usuário
+     *
+     * @var string
+     */
+    public $senha;
+    
+        
+    /**
+     * Método que verifica o banco de dados através do email
+     *
+     * @param  string $email
+     * @return Usuario
+     */
+    public static function  getUsuarioEmail($db,$email){
+        return (new DataBase($db))->getSelectDB('email = "'.$email.'"')->fetchObject(self::class);
     }
-
-    public function setEmail($email){
-        $this->email = $email;
-    }
-
-}
-
-
-class Cliente extends Usuario{
-    private $cpf;
-    public $viagensFeita;
-
-
-}
-
-class Empresa extends Usuario{
-    private $cnpj;
-    public $viagens;
-
-}
-
-class Admin extends Usuario{
-
-
 }
