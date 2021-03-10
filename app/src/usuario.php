@@ -4,7 +4,7 @@ namespace App\src;
 
 use App\db\DataBase;
 
-class Usuario
+abstract class Usuario
 {
     /**
      * ID do usuário
@@ -42,6 +42,6 @@ class Usuario
      * @return Usuario
      */
     public static function  getUsuarioEmail($db,$email){
-        return (new DataBase($db))->getSelectDB('email = "'.$email.'"')->fetchObject(self::class);
+        return (new DataBase($db))->getSelectDB('email = "'.$email.'"')->fetchObject();
     }
 }

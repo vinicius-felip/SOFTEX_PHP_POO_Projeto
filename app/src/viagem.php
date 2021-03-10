@@ -108,7 +108,7 @@ class Viagem
    * @param string $limit
    * @return array
    */
-  public static function getViagens($where = null, $order = null,   $limit = null)
+  public static function getViagens($where = null, $order = "`preco` ASC",   $limit = null)
   {
     return (new DataBase('viagem'))->getSelectDB($where, $order, $limit)->fetchAll(PDO::FETCH_CLASS, self::class);
   }

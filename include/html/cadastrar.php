@@ -8,102 +8,73 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
-
-    <style>
-        html,
-        body {
-            height: 100%;
-        }
-
-        body {
-            display: flex;
-            align-items: center;
-            padding-top: 10px;
-            padding-bottom: 40px;
-            background-color: #242424;
-        }
-
-        .form-signin {
-            width: 100%;
-            max-width: 530px;
-            padding: 15px;
-            margin: auto;
-        }
-
-        .form-signin .checkbox {
-            font-weight: 400;
-        }
-
-        .form-signin .form-control {
-            position: relative;
-            box-sizing: border-box;
-            height: auto;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        .form-signin .form-control:focus {
-            z-index: 2;
-        }
-
-        .form-signin input[type="email"] {
-            margin-bottom: -1px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-
-        .form-signin input[type="password"] {
-            margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        p a {
-            text-decoration: none;
-            color: black;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/logstyle.css">
 </head>
 
-<body class="text-center">
-
+<body class="text-center text-dark bg-dark">
     <main class="form-signin">
-        <form method="post">
+        <div class="logo">
             <a href="index.php"><img class="mb-4" src="assets/img/logo-img.png" alt="" width="300" height="60"></a>
-            <?php if ($mensagem) { ?>
-                <div class="alert alert-danger" role="alert">
-                    E-mail ou CPF já em uso.
-                </div>
-            <?php } ?>
-            <fieldset style="background: #ffad00;" class="rounded px-3 pt-3 mt-3">
-                <h1 class="h3 mb-3 fw-normal">Informe seus dados, por favor</h1>
-                <input name="nome" type="text" id="inputEmail" class="form-control mb-3" placeholder="Nome Completo" required autofocus>
-                <input name="cpf" type="text" id="inputEmail" class="form-control mb-3" placeholder="CPF" required>
-                <input name="email" type="email" id="inputEmail" class=" form-control mb-3" placeholder="Email" required>
-                <input name="senha" type="password" id="inputPassword" class="form-control mb-3" placeholder="Senha" required>
-                <input name="confsenha" type="password" id="inputPassword" class="form-control mb-3" placeholder="Confirme a Senha" required>
-                <button name="tipo" value="cliente" class="w-100 btn btn-lg btn-dark mb-3" type="submit">Cadastrar</button>
-                <p class="text-end text-white">Já tem cadastro?<a href="entrar.php"> Acesse sua conta</a></p>
-            </fieldset>
-        </form>
+        </div>
+        <?php if (is_string($mensagem)) {
+            switch ($mensagem) {
+                case 'cliente':
+                    echo "<div class='alert alert-danger' role='alert'>
+                E-mail ou CPF já está em uso.
+                </div>";
+                break;
+                case 'empresa':
+                    echo "<div class='alert alert-danger' role='alert'>
+                E-mail ou CNPJ já está em uso.
+                </div>";
+                break;
+            }
+        } ?>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item " role="presentation">
+                <button class="nav-link active" id="cliente-tab" data-bs-toggle="tab" data-bs-target="#cliente" type="button" role="tab" aria-controls="cliente" aria-selected="true">Cliente</button>
+            </li>
+            <li class="nav-item " role="presentation">
+                <button class="nav-link" id="empresa-tab" data-bs-toggle="tab" data-bs-target="#empresa" type="button" role="tab" aria-controls="empresa" aria-selected="false">Empresa</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="cliente" role="tabpanel" aria-labelledby="cliente-tab">
+                <form method="post">
+                    <fieldset class="text-dark p-3">
+                        <h1 class="h4 mb-3 fw-normal">Informe seus dados, por favor</h1>
+                        <input name="nome" type="text" class="form-control mb-3" placeholder="Nome Completo" required autofocus>
+                        <input name="cpf" type="text" class="form-control mb-3" placeholder="CPF" required>
+                        <input name="email" type="email" class=" form-control mb-3" placeholder="Email" required>
+                        <div class="input-group mb-3">
+                            <input name="senha" type="password" class="form-control me-2" placeholder="Senha">
+                            <input name="confsenha" type="password" class="form-control" placeholder="Confirme a senha">
+                        </div>
+                        <button name="tipo" value="cliente" class="w-100 btn btn-lg btn-dark mb-3" type="submit">Cadastrar</button>
+                        <p class="text-end">Já tem cadastro?<a href="entrar.php"> Acesse sua conta</a></p>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="empresa" role="tabpanel" aria-labelledby="empresa-tab">
+                <form method="post">
+                    <fieldset class="text-dark p-3">
+                        <h1 class="h4 mb-3 fw-normal">Informe seus dados, por favor</h1>
+                        <input name="nome" type="text" class="form-control mb-3" placeholder="Nome Fantasia" required autofocus>
+                        <input name="cnpj" type="text" class="form-control mb-3" placeholder="CNPJ" required>
+                        <input name="email" type="email" class=" form-control mb-3" placeholder="Email" required>
+                        <div class="input-group mb-3">
+                            <input name="senha" type="password" class="form-control me-2" placeholder="Senha">
+                            <input name="confsenha" type="password" class="form-control" placeholder="Confirme a senha">
+                        </div>
+                        <button name="tipo" value="empresa" class="w-100 btn btn-lg btn-dark mb-3" type="submit">Cadastrar</button>
+                        <p class="text-end">Já tem cadastro?<a href="entrar.php"> Acesse sua conta</a></p>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </main>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
 </body>
 

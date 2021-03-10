@@ -1,63 +1,143 @@
-<main class="mt-5">
-    <div class="container">
-        <div class="row rounded mb-3" style="background: #ffad00;">
-            <div class="col-2 text-center me-4">
-                <legend>Empresa</legend>
-            </div>
-            <div class="col-1 text-center ms-4 me-4">
-                <legend>Hora/Data</legend>
-            </div>
-            <div class="col-3 text-end ms-5 me-5 ">
-                <legend>Origem/Destino</legend>
-            </div>
-            <div class="col-1 text-end ms-5 me-auto">
-                <legend>Lugares</legend>
-            </div>
-            <div class="col-2 text-start me-4 ">
-                <legend>Preço</legend>
-            </div>
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="ms-4 bg-light rounded col-auto pb-1 mb-1 pe-5">
+            <legend class="">Passagens de ônibus de <b>Recife, PE</b> para <b>Salvador, BA</b></legend>
         </div>
-        <ul class="list-group  mb-3">
-            <?php if (!$mensagem) { ?>
-                <div class="card bg-dark text-light p-3">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Ops, não achamos resultados!</h5>
-                        <p class="card-text">Não encontramos nenhum resultado para essa busca.</p>
+    </div>
+</div>
+<main class="container-fluid">
+    <div class="row pb-3">
+        <div class="col-2">
+            <div class="container">
+                <div class="row border bg-warning border-warning rounded">
+                    <div class="col-12 mt-3">
+                        <label class="fw-bold mb-2">Classificar por:</label>
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <option value="1" selected>Preço</option>
+                            <option value="2">Assentos disponivéis</option>
+                            <option value="3">Data</option>
+                        </select>
+                    </div>
+                    <div class="col-12 my-3">
+                        <label class="fw-bold mb-1">Saída</label>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault1">
+                            <label class="form-check-label position-relative" for="flexCheckDefault1" style="width: 70px;">
+                                Manhã<small class="position-absolute top-100 start-50 translate-middle fw-light" style="font-size: 9px; width: 65px; margin-top: 5px">(06h00 - 12h00)</small>
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault2">
+                            <label class="form-check-label position-relative" for="flexCheckDefault2" style="width: 63px;">
+                                Tarde<small class="position-absolute top-100 start-50 translate-middle fw-light text-center" style="font-size: 9px; width: 65px; margin-top: 5px">(06h00 - 12h00)</small>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault3">
+                            <label class="form-check-label position-relative" for="flexCheckDefault3" style="width: 63px;">
+                                Noite<small class="position-absolute top-100 start-50 translate-middle fw-light text-center" style="font-size: 9px; width: 65px; margin-top: 5px">(06h00 - 12h00)</small>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12 my-3 ">
+                        <label class="fw-bold mb-1">Empresa</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault4">
+                            <label class="form-check-label" for="flexCheckDefault4">
+                                Empresa 1
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault5">
+                            <label class="form-check-label" for="flexCheckDefault5">
+                                Empresa 2
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3 ">
+                        <label class="fw-bold mb-1">Empresa</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault6">
+                            <label class="form-check-label" for="flexCheckDefault6">
+                                Default Check
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault7">
+                            <label class="form-check-label" for="flexCheckDefault7">
+                                Default checked Check
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <?php } else {
-                foreach ($viagens as $viagens) { ?>
-                    <li class="list-group p-3 mb-1 bg-dark rounded shadow-sm">
-                        <div class="row g-3 text-light">
-                            <div class="col-2 align-self-center ms-2">
-                                <legend><?= $viagens->empresa ?></legend>
+            </div>
+        </div>
+        <div class="col-10">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-12 d-flex-inline rounded bg-dark text-light">
+                        <ul class="nav">
+                            <div class="ms-4 me-5 text-center">
+                                <strong class="nav-link">Empresa</strong>
                             </div>
-                            <div class="col-2 text-center">
-                                <legend><?= date("H:m", strtotime($viagens->saida)) ?></legend>
-                                <small><?= date("d/m/Y", strtotime($viagens->saida)) ?></small>
+                            <div class="me-5" style="margin-left: 32px;">
+                                <strong class="nav-link">Saida</strong>
                             </div>
-                            <div class="col-4 text-center ms-4">
-                                <legend><?= $viagens->origem ?></legend>
-                                <legend><?= $viagens->destino ?></legend>
+                            <div class="me-5" style="margin-left: 56px;">
+                                <strong class="nav-link">Origem/Destino</strong>
                             </div>
-                            <div class="col-1 align-self-center text-center ms-auto">
-                                <legend><?= $viagens->assento ?></legend>
+                            <div class="me-1" style="margin-left: 130px;">
+                                <strong class="nav-link">Assentos</strong>
                             </div>
-                            <div class="col-2  text-center align-self-center ms-auto me-auto">
-                                <legend>R$ <?= $viagens->preco ?></legend>
+                            <div class="me-5" style="margin-left: 85px;">
+                                <strong class="nav-link">Preço</strong>
                             </div>
-                            <div class="col-auto align-self-center">
-                                <button style="color: #ffad00;" class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#detalhes<?= $viagens->id ?>" aria-expanded="false" aria-controls="detalhes<?= $viagens->id ?>"><i class="fas fa-chevron-down"></i></button>
+                        </ul>
+                    </div>
+                    <?php if (!$mensagem) { ?>
+                        <div class="col-12 rounded bg-white mt-2 p-3">
+                            <div class="d-flex-inline text-center">
+                                <legend class="m-0">Ops, não achamos resultados</legend>
+                                <small class="text-secondary">Não encontramos nenhum resultado para essa busca</small>
                             </div>
                         </div>
-                        <div class="collapse multi-collapse" id="detalhes<?= $viagens->id ?>">
-                            <div class="card card-body">
-                                <a class="btn btn-danger" href="compra.php?id=<?= $viagens->id ?>&qnt=<?= 1 ?>"></a>
+                        <?php } else {
+                        foreach ($viagens as $viagens) { ?>
+                            <div class="col-12 rounded bg-white mt-2 p-3">
+                                <div class="row align-items-center">
+                                    <div class="col-auto  me-5">
+                                        <div>
+                                            <img src="https://static.clickbus.com/live/travel-company-logos/kaissara.svg" alt="Kaissara" height="40">
+                                        </div>
+                                    </div>
+                                    <div class="col-1 p-0 me-0 text-center">
+                                        <p class="nav-link mb-0 p-0"><?= date("H:m", strtotime($viagens->saida)) ?></p>
+                                        <small class="nav-link mb-0 p-0" style="font-size: 11px;"><?= date("d/m/Y", strtotime($viagens->saida)) ?></small>
+                                    </div>
+                                    <div class="col-4 p-0 me-0 text-center">
+                                        <p class="nav-link mb-0 p-0"><?= $viagens->origem ?></p>
+                                        <p class="nav-link mb-0 p-0"><?= $viagens->destino ?></p>
+                                    </div>
+                                    <div class="col-3 p-0 me-0 text-center">
+                                        <p class="nav-link mb-0 p-0"><b class="bg-success rounded text-light p-1"><?= $viagens->assento ?></b> Lugares disponivéis</p>
+                                    </div>
+                                    <div class="col-1 p-0  me-0 text-center">
+                                        <p class="nav-link mb-0 p-0"><b>R$ <?= $viagens->preco ?></b></p>
+                                    </div>
+                                    <div class="col-auto p-0 me-2 ms-auto">
+                                        <button class="btn p-0" type="button" data-bs-toggle="collapse" data-bs-target="#detalhes<?= $viagens->id ?>" aria-expanded="false" aria-controls="detalhes<?= $viagens->id ?>"><i class="fas fa-chevron-down"></i></button>
+                                    </div>
+                                    <div class="collapse multi-collapse" id="detalhes<?= $viagens->id ?>">
+                                        <div class="card card-body">
+                                            <a class="btn btn-danger" href="compra.php?id=<?= $viagens->id ?>"></a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-            <?php }
-            } ?>
-        </ul>
+                    <?php }
+                    } ?>
+                </div>
+            </div>
+        </div>
     </div>
 </main>

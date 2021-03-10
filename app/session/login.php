@@ -21,17 +21,17 @@ class Login
      *
      * @param object Usuario $objUsuario
      */
-    public static function autenticado($objUsuario)
+    public static function autenticado($objUsuario, $location)
     {
         self::iniciarSession();
 
         $_SESSION['usuario'] = [
             'id' => $objUsuario->id,
             'nome' => $objUsuario->nome,
-            'email' => $objUsuario->emaial,
+            'email' => $objUsuario->email,
         ];
 
-        header('location: index.php');
+        header('location: '.$location);
         exit;
     }
     

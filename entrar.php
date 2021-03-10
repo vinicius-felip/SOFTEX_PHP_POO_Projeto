@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use \App\session\Login;
 use \App\src\Cliente;
@@ -13,18 +13,27 @@ $mensagem = false;
 
 if (isset($_POST['tipo'])) {
     switch ($_POST['tipo']) {
-        case 'cliente': 
-            $objUsuario = Cliente::getUsuarioEmail('cliente',$_POST['email']);
-            if (!$objUsuario instanceof Usuario || !password_verify($_POST['senha'],$objUsuario->senha)){
+
+        case 'cliente':
+            $objUsuario = Cliente::getUsuarioEmail('cliente', $_POST['email']);
+            if (!$objUsuario instanceof stdClass || !password_verify($_POST['senha'], $objUsuario->senha)) {
                 $mensagem = true;
                 break;
             }
-            Login::autenticado($objUsuario);
-            echo '<pre>'; print_r($GLOBALS); echo '</pre>'; exit;
+
+            Cliente::autenticado($objUsuario);
+            break;
+
         case 'empresa':
 
-            break;      
-    }
+            $objUsuario = Empresa::getUsuarioEmail('empresa', $_POST['email']);
+            echo '<pre>'; print_r($objUsuario); echo '</pre>';
+            if (!$objUsuario instanceof stdClass || !password_verify($_POST['senha'], $objUsuario->senha)) {
+                $mensagem = true;
+            }
+            Empresa::autenticado($objUsuario);
+            break;
+    } 
 }
 
-include_once __DIR__.'/include/html/entrar.php';
+include_once __DIR__ . '/include/html/entrar.php';

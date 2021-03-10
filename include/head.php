@@ -1,4 +1,5 @@
 <?php
+
 use \App\session\Login;
 
 Login::iniciarSession();
@@ -43,6 +44,11 @@ Login::iniciarSession();
         ::-webkit-scrollbar {
             display: none;
         }
+
+        .form-check-input:checked {
+            background-color: #ffad00;
+            border-color: #ffad00;
+        }
     </style>
 </head>
 
@@ -55,20 +61,12 @@ Login::iniciarSession();
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-start" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="viagens.php">Lista de viagens</a>
-                    </li>
-                </ul>
+            <div class="collapse navbar-collapse justify-content-end " id="navbarNav">
+                <?php if (isset($_SESSION['usuario']['id'])) { ?>
+                    <a href="sair.php"><button role="button" style=" border: 2px solid #ffad00" class="btn text-light">Sair</button></a>
+                <?php } else { ?>
+                    <a href="entrar.php"><button role="button" style=" border: 2px solid #ffad00" class="btn text-light">Entrar</button></a>
+                <?php } ?>
             </div>
-            <?php if (isset($_SESSION['usuario']['id'])){ ?>
-            <a href="sair.php"><button role="button" style=" border: 2px solid #ffad00" class="btn text-light" >Sair</button></a>
-            <?php }else{ ?>
-            <a href="entrar.php"><button role="button" style=" border: 2px solid #ffad00" class="btn text-light" >Entrar</button></a>
-            <?php } ?>
         </div>
     </nav>

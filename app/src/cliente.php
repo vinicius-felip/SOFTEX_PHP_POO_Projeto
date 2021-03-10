@@ -4,6 +4,7 @@ namespace App\src;
 
 use \App\src\Usuario;
 use \App\db\DataBase;
+use \App\session\Login;
 
 
 class Cliente extends Usuario
@@ -43,8 +44,6 @@ class Cliente extends Usuario
       'senha' => $this->senha,
       'cpf' => $this->cpf
     ]);
-
-    return true;
   }
 
   /**
@@ -56,5 +55,15 @@ class Cliente extends Usuario
   public static function  getClienteCadastro($db, $email, $cpf)
   {
     return (new DataBase($db))->getSelectDB('email = "' . $email . '" or cpf = "' . $cpf.'"')->fetchObject(self::class);
+  }
+  
+  /**
+   * Método que cria uma $_SESSION do cliente quando autenticado
+   *
+   * @param  object Client $objUsuario
+   * @param  string $location
+   */
+  public static function autenticado($objUsuario){
+    Login::autenticado($objUsuario,'index.php');
   }
 }

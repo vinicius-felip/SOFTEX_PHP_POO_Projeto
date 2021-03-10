@@ -145,6 +145,7 @@ class DataBase
          */
         $query = 'SELECT ' . $campos . ' FROM ' . $this->tabela . ' ' . $where . ' ' . $order . ' ' . $limit;
 
+        
         return $this->execute($query);
     }
 
