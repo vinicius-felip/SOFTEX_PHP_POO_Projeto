@@ -5,7 +5,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 use \App\session\Login;
 use \App\src\Cliente;
 use \App\src\Empresa;
-use App\src\Usuario;
 
 Login::requireLogout();
 
@@ -16,6 +15,7 @@ if (isset($_POST['tipo'])) {
 
         case 'cliente':
             $objUsuario = Cliente::getUsuarioEmail('cliente', $_POST['email']);
+            
             if (!$objUsuario instanceof stdClass || !password_verify($_POST['senha'], $objUsuario->senha)) {
                 $mensagem = true;
                 break;
@@ -27,9 +27,10 @@ if (isset($_POST['tipo'])) {
         case 'empresa':
 
             $objUsuario = Empresa::getUsuarioEmail('empresa', $_POST['email']);
-            echo '<pre>'; print_r($objUsuario); echo '</pre>';
+
             if (!$objUsuario instanceof stdClass || !password_verify($_POST['senha'], $objUsuario->senha)) {
                 $mensagem = true;
+                break;
             }
             Empresa::autenticado($objUsuario);
             break;

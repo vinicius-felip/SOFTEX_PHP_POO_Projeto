@@ -56,13 +56,13 @@ Login::iniciarSession();
     <nav class="navbar navbar-expand-md navbar-dark p-5 pt-3 pb-0 bg-transparent" style="background: #ffad00;">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">
-                <img src="assets\img\logo-img.png" alt="" width="250px" class="d-inline-block align-top">
+                <img src="assets\img\logo-image.png" alt="" width="250px" class="d-inline-block align-top">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end " id="navbarNav">
-                <?php if (isset($_SESSION['usuario']['id'])) { ?>
+                <?php if (isset($_SESSION['usuario'])) { ?>
                     <a href="sair.php"><button role="button" style=" border: 2px solid #ffad00" class="btn text-light">Sair</button></a>
                 <?php } else { ?>
                     <a href="entrar.php"><button role="button" style=" border: 2px solid #ffad00" class="btn text-light">Entrar</button></a>

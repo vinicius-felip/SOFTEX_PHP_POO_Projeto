@@ -21,20 +21,19 @@ class Login
      *
      * @param object Usuario $objUsuario
      */
-    public static function autenticado($objUsuario, $location)
+    public static function autenticado($objUsuario, $location, $user)
     {
         self::iniciarSession();
 
-        $_SESSION['usuario'] = [
+        $_SESSION['usuario'][$user] = [
             'id' => $objUsuario->id,
             'nome' => $objUsuario->nome,
             'email' => $objUsuario->email,
         ];
-
-        header('location: '.$location);
+        header('location: ' . $location);
         exit;
     }
-    
+
     /**
      * Método que finaliza a $_SESSION do usuario
      *
@@ -57,17 +56,21 @@ class Login
     {
         self::iniciarSession();
 
-        return isset($_SESSION['usuario']['id']);
+        return isset($_SESSION['usuario']);
     }
 
     /**
      * Método que impede o usuário não identificado de acessar páginas exclusivas de login
      *
      */
-    public static function requireLogin()
-    {
+    public static function requireLogin($user, $location)
+    {   
         if (!self::validarLogin()) {
             header('location: entrar.php');
+            exit;
+        }
+        if (!isset($_SESSION['usuario'][$user])){
+            header('location: '.$location);
             exit;
         }
     }

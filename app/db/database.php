@@ -119,6 +119,7 @@ class DataBase
          */
         $query = 'INSERT INTO ' . $this->tabela . ' (' . implode(',', $campos) . ') VALUES (' . implode(',', $valores) . ')';
 
+
         $this->execute($query, array_values($info));
         return $this->conexao->lastInsertId();
     }
@@ -145,7 +146,7 @@ class DataBase
          */
         $query = 'SELECT ' . $campos . ' FROM ' . $this->tabela . ' ' . $where . ' ' . $order . ' ' . $limit;
 
-        
+
         return $this->execute($query);
     }
 

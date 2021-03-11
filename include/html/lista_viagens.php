@@ -21,51 +21,42 @@
                     <div class="col-12 my-3">
                         <label class="fw-bold mb-1">Saída</label>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault1">
-                            <label class="form-check-label position-relative" for="flexCheckDefault1" style="width: 70px;">
-                                Manhã<small class="position-absolute top-100 start-50 translate-middle fw-light" style="font-size: 9px; width: 65px; margin-top: 5px">(06h00 - 12h00)</small>
+                            <input name="dia" value="00:00 05:59" class="form-check-input" type="checkbox" id="flexCheckDefault">
+                            <label class="form-check-label position-relative" for="flexCheckDefault" style="width: 70px;">
+                                Madrugada<small class="position-absolute top-100 start-50 translate-middle fw-light" style="font-size: 9px; width: 65px; margin-top: 5px">(00h00 - 05h59)</small>
                             </label>
                         </div>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault2">
+                            <input class="form-check-input" type="checkbox" id="flexCheckDefault1">
+                            <label class="form-check-label position-relative" for="flexCheckDefault1" style="width: 70px;">
+                                Manhã<small class="position-absolute top-100 start-50 translate-middle fw-light" style="font-size: 9px; width: 65px; margin-top: 5px">(06h00 - 11h59)</small>
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="flexCheckDefault2">
                             <label class="form-check-label position-relative" for="flexCheckDefault2" style="width: 63px;">
-                                Tarde<small class="position-absolute top-100 start-50 translate-middle fw-light text-center" style="font-size: 9px; width: 65px; margin-top: 5px">(06h00 - 12h00)</small>
+                                Tarde<small class="position-absolute top-100 start-50 translate-middle fw-light text-center" style="font-size: 9px; width: 65px; margin-top: 5px">(12h00 - 17h59)</small>
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault3">
+                            <input class="form-check-input" type="checkbox" id="flexCheckDefault3">
                             <label class="form-check-label position-relative" for="flexCheckDefault3" style="width: 63px;">
-                                Noite<small class="position-absolute top-100 start-50 translate-middle fw-light text-center" style="font-size: 9px; width: 65px; margin-top: 5px">(06h00 - 12h00)</small>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-12 my-3 ">
-                        <label class="fw-bold mb-1">Empresa</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault4">
-                            <label class="form-check-label" for="flexCheckDefault4">
-                                Empresa 1
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault5">
-                            <label class="form-check-label" for="flexCheckDefault5">
-                                Empresa 2
+                                Noite<small class="position-absolute top-100 start-50 translate-middle fw-light text-center" style="font-size: 9px; width: 65px; margin-top: 5px">(18h00 - 23h59)</small>
                             </label>
                         </div>
                     </div>
                     <div class="col-12 mb-3 ">
                         <label class="fw-bold mb-1">Empresa</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault6">
+                            <input class="form-check-input" type="checkbox" id="flexCheckDefault6">
                             <label class="form-check-label" for="flexCheckDefault6">
-                                Default Check
+                                Empresa 1
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault7">
+                            <input class="form-check-input" type="checkbox" id="flexCheckDefault7">
                             <label class="form-check-label" for="flexCheckDefault7">
-                                Default checked Check
+                                Empresa 2
                             </label>
                         </div>
                     </div>
@@ -94,7 +85,7 @@
                             </div>
                         </ul>
                     </div>
-                    <?php if (!$mensagem) { ?>
+                    <?php if ($mensagem) { ?>
                         <div class="col-12 rounded bg-white mt-2 p-3">
                             <div class="d-flex-inline text-center">
                                 <legend class="m-0">Ops, não achamos resultados</legend>
@@ -111,8 +102,8 @@
                                         </div>
                                     </div>
                                     <div class="col-1 p-0 me-0 text-center">
-                                        <p class="nav-link mb-0 p-0"><?= date("H:m", strtotime($viagens->saida)) ?></p>
-                                        <small class="nav-link mb-0 p-0" style="font-size: 11px;"><?= date("d/m/Y", strtotime($viagens->saida)) ?></small>
+                                        <p class="nav-link mb-0 p-0"><?= date("H:m", strtotime($viagens->hora)) ?></p>
+                                        <small class="nav-link mb-0 p-0" style="font-size: 11px;"><?= date("d-m-Y", strtotime($viagens->data)) ?></small>
                                     </div>
                                     <div class="col-4 p-0 me-0 text-center">
                                         <p class="nav-link mb-0 p-0"><?= $viagens->origem ?></p>

@@ -63,7 +63,7 @@ class Empresa extends Usuario
    * @param  string $location
    */
   public static function autenticado($objUsuario){
-    Login::autenticado($objUsuario,'empresa_index.php');
+    Login::autenticado($objUsuario,'empresa.php', __CLASS__);
   }
 }
 

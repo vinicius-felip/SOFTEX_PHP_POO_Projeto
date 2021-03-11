@@ -13,6 +13,7 @@ Login::requireLogout();
 $mensagem = null;
 
 if (isset($_POST['tipo'])) {
+    echo '<pre>'; print_r($_POST); echo '</pre>'; exit;
     switch ($_POST['tipo']) {
 
         case 'cliente':

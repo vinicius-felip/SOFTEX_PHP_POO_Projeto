@@ -14,7 +14,7 @@
 <body class="text-center text-dark bg-dark">
     <main class="form-signin">
         <div class="logo">
-            <a href="index.php"><img class="mb-4" src="assets/img/logo-img.png" alt="" width="300" height="60"></a>
+            <a href="index.php"><img class="mb-4" src="assets/img/logo-image.png" alt="" width="300" height="60"></a>
         </div>
         <?php if (is_string($mensagem)) {
             switch ($mensagem) {
@@ -22,12 +22,12 @@
                     echo "<div class='alert alert-danger' role='alert'>
                 E-mail ou CPF já está em uso.
                 </div>";
-                break;
+                    break;
                 case 'empresa':
                     echo "<div class='alert alert-danger' role='alert'>
                 E-mail ou CNPJ já está em uso.
                 </div>";
-                break;
+                    break;
             }
         } ?>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -41,7 +41,7 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="cliente" role="tabpanel" aria-labelledby="cliente-tab">
                 <form method="post">
-                    <fieldset class="text-dark p-3">
+                    <fieldset class="text-dark p-3 rounded-bottom">
                         <h1 class="h4 mb-3 fw-normal">Informe seus dados, por favor</h1>
                         <input name="nome" type="text" class="form-control mb-3" placeholder="Nome Completo" required autofocus>
                         <input name="cpf" type="text" class="form-control mb-3" placeholder="CPF" required>
@@ -57,8 +57,9 @@
             </div>
             <div class="tab-pane fade" id="empresa" role="tabpanel" aria-labelledby="empresa-tab">
                 <form method="post">
-                    <fieldset class="text-dark p-3">
+                    <fieldset class="text-dark px-3 pt-3 rounded-bottom">
                         <h1 class="h4 mb-3 fw-normal">Informe seus dados, por favor</h1>
+                        <input name="image" placeholder="FOTO" type="file" class="form-control p-1 m-0 mb-3" id="inputGroupFile01" accept="image/x-png">
                         <input name="nome" type="text" class="form-control mb-3" placeholder="Nome Fantasia" required autofocus>
                         <input name="cnpj" type="text" class="form-control mb-3" placeholder="CNPJ" required>
                         <input name="email" type="email" class=" form-control mb-3" placeholder="Email" required>
@@ -67,7 +68,7 @@
                             <input name="confsenha" type="password" class="form-control" placeholder="Confirme a senha">
                         </div>
                         <button name="tipo" value="empresa" class="w-100 btn btn-lg btn-dark mb-3" type="submit">Cadastrar</button>
-                        <p class="text-end">Já tem cadastro?<a href="entrar.php"> Acesse sua conta</a></p>
+                        <p class="text-end mb-1">Já tem cadastro?<a href="entrar.php"> Acesse sua conta</a></p>
                     </fieldset>
                 </form>
             </div>

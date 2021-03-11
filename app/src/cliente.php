@@ -64,6 +64,6 @@ class Cliente extends Usuario
    * @param  string $location
    */
   public static function autenticado($objUsuario){
-    Login::autenticado($objUsuario,'index.php');
+    Login::autenticado($objUsuario,'index.php', __CLASS__);
   }
 }

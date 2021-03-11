@@ -17,11 +17,11 @@ class Viagem
   public $id;
 
   /**
-   * Empresa que está disponibilizando a viagem
+   * id_Empresa que está disponibilizando a viagem
    *
    * @var string
    */
-  public $empresa;
+  public $id_id_empresa;
 
   /**
    * Cidade de origem da viagem
@@ -42,7 +42,14 @@ class Viagem
    *
    * @var string
    */
-  public $saida;
+  public $data;
+
+    /**
+   * Horaa da saída do ônibus
+   *
+   * @var string
+   */
+  public $hora;
 
   /**
    * Preço da passagem da viagem
@@ -63,20 +70,22 @@ class Viagem
   /**
    * Método que recebe o valor do POST
    *
-   * @param  string $empresa
+   * @param  string $id_empresa
    * @param  string $origem
    * @param  string $destino
-   * @param  string $saida
+   * @param  string $data
+   * @param  string $hora
    * @param  integer $preco
    * @param  string $assentos
    * @return void
    */
-  public function setValores($empresa, $origem, $destino, $saida, $preco, $assentos)
+  public function setValores($id_empresa, $origem, $destino, $data, $hora, $preco, $assentos)
   {
-    $this->empresa = '$empresa';
+    $this->id_empresa = $id_empresa;
     $this->origem = $origem;
     $this->destino = $destino;
-    $this->saida = $saida;
+    $this->data = $data;
+    $this->hora = $hora;
     $this->preco = $preco;
     $this->assentos = $assentos;
   }
@@ -91,10 +100,11 @@ class Viagem
     $objDataBase = new DataBase('viagem');
 
     $this->id = $objDataBase->setInsertDB([
-      'empresa' => $this->empresa,
+      'id_empresa' => $this->id_empresa,
       'origem' => $this->origem,
       'destino' => $this->destino,
-      'saida' => $this->saida,
+      'data' => $this->data,
+      'hora' => $this->hora,
       'preco' => $this->preco,
       'assento' => $this->assentos,
     ]);

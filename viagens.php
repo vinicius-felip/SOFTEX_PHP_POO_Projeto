@@ -6,7 +6,7 @@ require_once __DIR__.'/vendor/autoload.php';
 
 
 $viagens = Viagem::getViagens();
-//echo '<pre>'; print_r($viagens); echo '</pre>'; exit;
+
 
 $mensagem = count($viagens) ? false : true;
 

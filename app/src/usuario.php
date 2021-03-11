@@ -3,6 +3,7 @@
 namespace App\src;
 
 use App\db\DataBase;
+use \App\session\Login;
 
 abstract class Usuario
 {

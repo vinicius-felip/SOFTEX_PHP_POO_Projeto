@@ -12,7 +12,7 @@
 <body class="text-center text-dark bg-dark">
   <main class="form-signin">
     <div class="logo">
-      <a href="index.php"><img class="mb-4" src="assets/img/logo-img.png" alt="" width="300" height="60"></a>
+      <a href="index.php"><img class="mb-4" src="assets/img/logo-image.png" alt="" width="300" height="60"></a>
     </div>
     <?php if ($mensagem) { ?>
       <div class="alert alert-danger" role="alert">
