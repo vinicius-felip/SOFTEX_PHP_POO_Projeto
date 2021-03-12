@@ -1,7 +1,7 @@
 <div class="container-fluid mt-5">
     <div class="row">
         <div class="ms-4 bg-light rounded col-auto pb-1 mb-1 pe-5">
-            <legend class="">Passagens de ônibus de <b>Recife, PE</b> para <b>Salvador, BA</b></legend>
+            <legend class="">Passagens de ônibus de <b><?= $origem['titulo'] ?></b> para <b><?= $destino['titulo'] ?></b></legend>
         </div>
     </div>
 </div>
@@ -10,56 +10,57 @@
         <div class="col-2">
             <div class="container">
                 <div class="row border bg-warning border-warning rounded">
-                    <div class="col-12 mt-3">
-                        <label class="fw-bold mb-2">Classificar por:</label>
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                            <option value="1" selected>Preço</option>
-                            <option value="2">Assentos disponivéis</option>
-                            <option value="3">Data</option>
-                        </select>
-                    </div>
-                    <div class="col-12 my-3">
-                        <label class="fw-bold mb-1">Saída</label>
-                        <div class="form-check mb-3">
-                            <input name="dia" value="00:00 05:59" class="form-check-input" type="checkbox" id="flexCheckDefault">
-                            <label class="form-check-label position-relative" for="flexCheckDefault" style="width: 70px;">
-                                Madrugada<small class="position-absolute top-100 start-50 translate-middle fw-light" style="font-size: 9px; width: 65px; margin-top: 5px">(00h00 - 05h59)</small>
-                            </label>
+                    <form method="post">
+                        <div class="col-12 mt-3">
+                            <label class="fw-bold mb-2">Classificar por:</label>
+                            <select name="classificar" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                <option value="preco" <?= $order == 'preco' ? 'selected': ''?>>Preço</option>
+                                <option value="assento" <?= $order == 'assento' ? 'selected': ''?>>Assentos disponivéis</option>
+                                <option value="data" <?= $order == 'data' ? 'selected': ''?>>Data</option>
+                            </select>
                         </div>
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="flexCheckDefault1">
-                            <label class="form-check-label position-relative" for="flexCheckDefault1" style="width: 70px;">
-                                Manhã<small class="position-absolute top-100 start-50 translate-middle fw-light" style="font-size: 9px; width: 65px; margin-top: 5px">(06h00 - 11h59)</small>
-                            </label>
+                        <div class="col-12 my-3">
+                            <label class="fw-bold mb-1">Saída</label>
+                            <div class="form-check mb-3" <?= !$filtro['Madrugada'][0]->hora ? 'Hidden' : '' ?>>
+                                <input name="hora1" value="1" class="form-check-input" type="checkbox" id="flexCheckDefault" <?= isset($_POST['hora1']) ? 'Checked' : '' ?>>
+                                <label class="form-check-label position-relative" for="flexCheckDefault" style="width: 70px;">
+                                    Madrugada<small class="position-absolute top-100 start-50 translate-middle fw-light" style="font-size: 9px; width: 65px; margin-top: 5px">(00h00 - 05h59)</small>
+                                </label>
+                            </div>
+                            <div class="form-check mb-3" <?= !$filtro['Manhã'][0]->hora ? 'Hidden' : '' ?>>
+                                <input name="hora2" value="1" class="form-check-input" type="checkbox" id="flexCheckDefault1" <?= isset($_POST['hora2']) ? 'Checked' : '' ?>>
+                                <label class="form-check-label position-relative" for="flexCheckDefault1" style="width: 70px;">
+                                    Manhã<small class="position-absolute top-100 start-50 translate-middle fw-light" style="font-size: 9px; width: 65px; margin-top: 5px">(06h00 - 11h59)</small>
+                                </label>
+                            </div>
+                            <div class="form-check mb-3" <?= !$filtro['Tarde'][0]->hora ? 'Hidden' : '' ?>>
+                                <input name="hora3" value="1" class="form-check-input" type="checkbox" id="flexCheckDefault2" <?= isset($_POST['hora3']) ? 'Checked' : '' ?>>
+                                <label class="form-check-label position-relative" for="flexCheckDefault2" style="width: 63px;">
+                                    Tarde<small class="position-absolute top-100 start-50 translate-middle fw-light text-center" style="font-size: 9px; width: 65px; margin-top: 5px">(12h00 - 17h59)</small>
+                                </label>
+                            </div>
+                            <div class="form-check" <?= !$filtro['Noite'][0]->hora ? 'Hidden' : '' ?>>
+                                <input name="hora4" value="1" class="form-check-input" type="checkbox" id="flexCheckDefault3" <?= isset($_POST['hora4']) ? 'Checked' : '' ?>>
+                                <label class="form-check-label position-relative" for="flexCheckDefault3" style="width: 63px;">
+                                    Noite<small class="position-absolute top-100 start-50 translate-middle fw-light text-center" style="font-size: 9px; width: 65px; margin-top: 5px">(18h00 - 23h59)</small>
+                                </label>
+                            </div>
                         </div>
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="flexCheckDefault2">
-                            <label class="form-check-label position-relative" for="flexCheckDefault2" style="width: 63px;">
-                                Tarde<small class="position-absolute top-100 start-50 translate-middle fw-light text-center" style="font-size: 9px; width: 65px; margin-top: 5px">(12h00 - 17h59)</small>
-                            </label>
+                        <div class="col-12 my-3">
+                            <label class="fw-bold mb-1">Empresa</label>
+                            <?php foreach ($filtro['Empresa'] as $empresa){ ?>
+                                <div class="form-check">
+                                    <input name="empresa<?= $empresa->id_empresa ?>" value="<?= $empresa->id_empresa ?>" class="form-check-input" type="checkbox" id="<?= $empresa->nome ?>">
+                                    <label class="form-check-label" for="<?= $empresa->nome ?>">
+                                    <?= $empresa->nome ?>
+                                    </label>
+                                </div>
+                            <?php } ?>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="flexCheckDefault3">
-                            <label class="form-check-label position-relative" for="flexCheckDefault3" style="width: 63px;">
-                                Noite<small class="position-absolute top-100 start-50 translate-middle fw-light text-center" style="font-size: 9px; width: 65px; margin-top: 5px">(18h00 - 23h59)</small>
-                            </label>
+                        <div class="col-12 mb-3 text-center">
+                        <button class="btn btn-sm btn-dark" type="submit">Filtrar</button>
                         </div>
-                    </div>
-                    <div class="col-12 mb-3 ">
-                        <label class="fw-bold mb-1">Empresa</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="flexCheckDefault6">
-                            <label class="form-check-label" for="flexCheckDefault6">
-                                Empresa 1
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="flexCheckDefault7">
-                            <label class="form-check-label" for="flexCheckDefault7">
-                                Empresa 2
-                            </label>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -120,7 +121,7 @@
                                     </div>
                                     <div class="collapse multi-collapse" id="detalhes<?= $viagens->id ?>">
                                         <div class="card card-body">
-                                            <a class="btn btn-danger" href="compra.php?id=<?= $viagens->id ?>"></a>
+                                            <a class="btn btn-danger" href="compra.php?id=<?= $viagens->id ?>&qnt=1"></a>
                                         </div>
                                     </div>
                                 </div>

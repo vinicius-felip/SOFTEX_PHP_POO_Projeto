@@ -21,7 +21,7 @@ class Viagem
    *
    * @var string
    */
-  public $id_id_empresa;
+  public $nome;
 
   /**
    * Cidade de origem da viagem
@@ -63,7 +63,7 @@ class Viagem
    *
    * @var integer
    */
-  public $assentos;
+  public $assento;
 
 
 
@@ -116,11 +116,12 @@ class Viagem
    * @param string $where
    * @param string $order
    * @param string $limit
+   * @param string $innerJoin
    * @return array
    */
-  public static function getViagens($where = null, $order = "`preco` ASC",   $limit = null)
+  public static function getViagens($where = null, $order = null,   $limit = null, $campo = '*', $innerJoin = null)
   {
-    return (new DataBase('viagem'))->getSelectDB($where, $order, $limit)->fetchAll(PDO::FETCH_CLASS, self::class);
+    return (new DataBase('viagem'))->getSelectDB($where, $order, $limit, $campo, $innerJoin)->fetchAll(PDO::FETCH_CLASS, self::class);
   }
 
   /**

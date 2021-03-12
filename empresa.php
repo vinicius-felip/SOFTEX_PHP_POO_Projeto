@@ -10,7 +10,6 @@ Login::requireLogin('App\src\Empresa', 'index.php');
 $viagens = Viagem::getViagens('id_empresa = '.$_SESSION['usuario']['App\src\Empresa']['id'], "'id' ASC");
 
 
-
 include_once __DIR__ . '/include/head_empresa.php';
 
 if (isset($_GET['acao'])) {

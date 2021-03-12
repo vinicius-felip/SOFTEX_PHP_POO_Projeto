@@ -132,7 +132,7 @@ class DataBase
      * @param  string $limit
      * @return PDOStatement
      */
-    public function getSelectDB($where = null, $order = null, $limit = null, $campos = '*')
+    public function getSelectDB($where = null, $order = null, $limit = null, $campos = '*', $innerJoin = null)
     {
         /**
          * Dados da query
@@ -140,12 +140,14 @@ class DataBase
         $where = strlen($where) ? 'WHERE ' . $where : '';
         $order = strlen($order) ? 'ORDER BY ' . $order : '';
         $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
-
+        $innerJoin = strlen($innerJoin) ? 'INNER JOIN ' . $innerJoin : '';
+        
         /**
          * Monta a query
          */
-        $query = 'SELECT ' . $campos . ' FROM ' . $this->tabela . ' ' . $where . ' ' . $order . ' ' . $limit;
-
+        $query = 'SELECT ' . $campos . ' FROM ' . $this->tabela . ' ' . $innerJoin . ' '. $where .' '. $order . ' ' . $limit;
+        
+        
 
         return $this->execute($query);
     }
