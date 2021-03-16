@@ -4,9 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard Template · Bootstrap v5.0</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+    <title>Empresa - <?= $_SESSION['usuario']['App\src\Empresa']['nome'] ?></title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">>
     <link rel="stylesheet" href="assets/css/style_empresa.css">
@@ -19,7 +17,7 @@
 <body>
 
     <header class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow bg-dark">
-        <div class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"><img src="https://static.clickbus.com/live/travel-company-logos/expresso-guanabara.svg" alt="Expresso Guanabara" width="170"></div>
+        <div class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"><img src="assets/img/logo-empresas/<?= $_SESSION['usuario']['App\src\Empresa']['foto'] ?>" alt="<?= $_SESSION['usuario']['App\src\Empresa']['nome'] ?>" width="170"></div>
 
         <img src="assets/img/logo-image.png" alt="" width="190px">
         <ul class="navbar-nav px-3">

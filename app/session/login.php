@@ -27,6 +27,7 @@ class Login
 
         $_SESSION['usuario'][$user] = [
             'id' => $objUsuario->id,
+            'foto' => $objUsuario->foto,
             'nome' => $objUsuario->nome,
             'email' => $objUsuario->email,
         ];

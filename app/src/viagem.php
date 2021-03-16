@@ -4,9 +4,18 @@ namespace App\src;
 
 use \App\db\DataBase;
 
-use  \PDO;
+use \PDO;
 
-class Viagem
+interface ViagemTemplate{
+
+  public function diminuirAssento($id);
+  public function setValores($id_empresa, $origem, $destino, $data, $hora, $preco, $assentos);
+  public function setViagemDB();
+
+}
+
+
+class Viagem implements ViagemTemplate
 {
 
   /**
@@ -131,11 +140,11 @@ class Viagem
    * @param integer $id
    * @return boolean
    */
-  public function diminuirAssento($qnt, $id)
+  public function diminuirAssento($id)
   {
     $objDataBase = new DataBase('viagem');
     if ($objDataBase->getSelectDB('id = ' . $id, null, null, 'assento')->fetchColumn() > 0) {
-      return $objDataBase->setDecrementUpdateDB('assento  = assento -' . "$qnt", 'id = ' . $id);
+      return $objDataBase->setDecrementUpdateDB('assento  = assento -1', 'id = ' . $id);
     }
     return false;
   }

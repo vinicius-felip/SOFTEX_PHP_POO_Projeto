@@ -54,16 +54,28 @@ class Cliente extends Usuario
    */
   public static function  getClienteCadastro($db, $email, $cpf)
   {
-    return (new DataBase($db))->getSelectDB('email = "' . $email . '" or cpf = "' . $cpf.'"')->fetchObject(self::class);
+    return (new DataBase($db))->getSelectDB('email = "' . $email . '" or cpf = "' . $cpf . '"')->fetchObject(self::class);
   }
-  
+
+  /**
+   * Método que verifica o banco de dados através do email
+   *
+   * @param  string $email
+   * @return Usuario
+   */
+  public static function  getUsuarioEmail($email)
+  {
+    return (new DataBase('cliente'))->getSelectDB('email = "' . $email . '"')->fetchObject();
+  }
+
   /**
    * Método que cria uma $_SESSION do cliente quando autenticado
    *
    * @param  object Client $objUsuario
    * @param  string $location
    */
-  public static function autenticado($objUsuario){
-    Login::autenticado($objUsuario,'index.php', __CLASS__);
+  public static function autenticado($objUsuario)
+  {
+    Login::autenticado($objUsuario, 'index.php', __CLASS__);
   }
 }

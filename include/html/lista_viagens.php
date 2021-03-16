@@ -1,6 +1,6 @@
 <div class="container-fluid mt-5">
     <div class="row">
-        <div class="ms-4 bg-light rounded col-auto pb-1 mb-1 pe-5">
+        <div class="ms-4 bg-light rounded col-auto py-1 mb-1 pe-5">
             <legend class="">Passagens de ônibus de <b><?= $origem['titulo'] ?></b> para <b><?= $destino['titulo'] ?></b></legend>
         </div>
     </div>
@@ -9,14 +9,14 @@
     <div class="row pb-3">
         <div class="col-2">
             <div class="container">
-                <div class="row border bg-warning border-warning rounded">
+                <div class="row border border-dark rounded"  style="background: #ffad00;">
                     <form method="post">
                         <div class="col-12 mt-3">
                             <label class="fw-bold mb-2">Classificar por:</label>
                             <select name="classificar" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                <option value="preco" <?= $order == 'preco' ? 'selected': ''?>>Preço</option>
-                                <option value="assento" <?= $order == 'assento' ? 'selected': ''?>>Assentos disponivéis</option>
-                                <option value="data" <?= $order == 'data' ? 'selected': ''?>>Data</option>
+                                <option value="preco" <?= $order == 'preco' ? 'selected' : '' ?>>Preço</option>
+                                <option value="assento" <?= $order == 'assento' ? 'selected' : '' ?>>Assentos disponivéis</option>
+                                <option value="data" <?= $order == 'data' ? 'selected' : '' ?>>Data</option>
                             </select>
                         </div>
                         <div class="col-12 my-3">
@@ -48,17 +48,21 @@
                         </div>
                         <div class="col-12 my-3">
                             <label class="fw-bold mb-1">Empresa</label>
-                            <?php foreach ($filtro['Empresa'] as $empresa){ ?>
+                            <?php foreach ($filtro['Empresa'] as $empresa) { ?>
                                 <div class="form-check">
-                                    <input name="empresa<?= $empresa->id_empresa ?>" value="<?= $empresa->id_empresa ?>" class="form-check-input" type="checkbox" id="<?= $empresa->nome ?>">
+                                    <input name="empresa[]" value="<?= $empresa->id_empresa ?>" class="form-check-input" type="checkbox" id="<?= $empresa->nome ?>" <?php if (isset($_POST['empresa'])) {
+                                                                                                                                                                        if (in_array($empresa->id_empresa, $_POST['empresa'])) {
+                                                                                                                                                                            echo 'Checked';
+                                                                                                                                                                        }
+                                                                                                                                                                    } ?>>
                                     <label class="form-check-label" for="<?= $empresa->nome ?>">
-                                    <?= $empresa->nome ?>
+                                        <?= $empresa->nome ?>
                                     </label>
                                 </div>
                             <?php } ?>
                         </div>
                         <div class="col-12 mb-3 text-center">
-                        <button class="btn btn-sm btn-dark" type="submit">Filtrar</button>
+                            <button class="btn btn-sm btn-dark" type="submit">Filtrar</button>
                         </div>
                     </form>
                 </div>
@@ -94,12 +98,12 @@
                             </div>
                         </div>
                         <?php } else {
-                        foreach ($viagens as $viagens) { ?>
+                        foreach ($viagens as $viagens) {  ?>
                             <div class="col-12 rounded bg-white mt-2 p-3">
                                 <div class="row align-items-center">
                                     <div class="col-auto  me-5">
                                         <div>
-                                            <img src="https://static.clickbus.com/live/travel-company-logos/kaissara.svg" alt="Kaissara" height="40">
+                                            <img src="assets/img/logo-empresas/<?= $viagens->nome ?>" alt="<?= $viagens->nome ?>" width="130" height="40">
                                         </div>
                                     </div>
                                     <div class="col-1 p-0 me-0 text-center">
@@ -117,11 +121,29 @@
                                         <p class="nav-link mb-0 p-0"><b>R$ <?= $viagens->preco ?></b></p>
                                     </div>
                                     <div class="col-auto p-0 me-2 ms-auto">
-                                        <button class="btn p-0" type="button" data-bs-toggle="collapse" data-bs-target="#detalhes<?= $viagens->id ?>" aria-expanded="false" aria-controls="detalhes<?= $viagens->id ?>"><i class="fas fa-chevron-down"></i></button>
+                                        <a type="button" class=" btn-sm  btn-warning text-dark" data-bs-toggle="modal" data-bs-target="#ViagemID<?= $viagens->id ?>"><i class="fas fa-shopping-cart"></i></a>
                                     </div>
-                                    <div class="collapse multi-collapse" id="detalhes<?= $viagens->id ?>">
-                                        <div class="card card-body">
-                                            <a class="btn btn-danger" href="compra.php?id=<?= $viagens->id ?>&qnt=1"></a>
+                                    <div class="modal fade" id="ViagemID<?= $viagens->id ?>" tabindex="-1" aria-labelledby="ViagemIDLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="ViagemIDLabel">Reserva</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Origem: <b><?= $origem['titulo'] ?></b><br>
+                                                    Destino: <b><?= $destino['titulo'] ?></b><br>
+                                                    Data/Hora: <?= date("d/m/Y", strtotime($viagens->data)) ?> às <?= date("H:m", strtotime($viagens->hora)) ?><br>
+                                                    Passagens: <b>1</b><br>
+                                                    Valor: <b>R$ <?= $viagens->preco ?></b>
+                                                </div>
+                                                <form action="comprar.php" method="post">
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" name="id" value="<?= $viagens->id ?>" class="btn btn-warning">Continuar reserva</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

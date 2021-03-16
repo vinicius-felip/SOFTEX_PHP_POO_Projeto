@@ -14,7 +14,7 @@ if (isset($_POST['tipo'])) {
     switch ($_POST['tipo']) {
 
         case 'cliente':
-            $objUsuario = Cliente::getUsuarioEmail('cliente', $_POST['email']);
+            $objUsuario = Cliente::getUsuarioEmail($_POST['email']);
             
             if (!$objUsuario instanceof stdClass || !password_verify($_POST['senha'], $objUsuario->senha)) {
                 $mensagem = true;
@@ -26,7 +26,7 @@ if (isset($_POST['tipo'])) {
 
         case 'empresa':
 
-            $objUsuario = Empresa::getUsuarioEmail('empresa', $_POST['email']);
+            $objUsuario = Empresa::getUsuarioEmail($_POST['email']);
 
             if (!$objUsuario instanceof stdClass || !password_verify($_POST['senha'], $objUsuario->senha)) {
                 $mensagem = true;

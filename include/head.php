@@ -12,7 +12,6 @@ Login::iniciarSession();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <title>Bus Tour</title>
     <style>
@@ -46,8 +45,8 @@ Login::iniciarSession();
         }
 
         .form-check-input:checked {
-            background-color: #ffad00;
-            border-color: #ffad00;
+            background-color: #000;
+            border-color: #000;
         }
     </style>
 </head>
@@ -59,12 +58,24 @@ Login::iniciarSession();
                 <a class="navbar-brand" href="index.php">
                     <img src="assets\img\logo-image.png" alt="" width="250px" class="d-inline-block align-top">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">  
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler btn-outline-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-caret-square-down"></i>
                 </button>
-                <div class="collapse navbar-collapse justify-content-end " id="navbarNav">
+                <div class="collapse navbar-collapse justify-content-end  text-end" id="navbarTogglerDemo02">
                     <?php if (isset($_SESSION['usuario'])) { ?>
-                        <a href="sair.php"><button role="button" style=" border: 2px solid #ffad00" class="btn text-light">Sair</button></a>
+                        <div class="btn-group">
+                            <button type="button" class="btn dropdown-toggle btn-outline-warning" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                                <i class="fas fa-user-circle me-2"></i> Olá, <?= strtok($_SESSION['usuario']['App\src\Cliente']['nome'], " ") ?>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                                <li><a class="dropdown-item" href="#">Meus pedidos</a></li>
+                                <li><hr class="dropdown-divider m-auto" style="width: 140px;"></li>
+                                <li><a class="dropdown-item" href="#">Minha conta</a></li>
+                                <li><hr class="dropdown-divider m-auto" style="width: 140px;"></li>
+                                <li><a class="dropdown-item" href="sair.php">Sair</a></li>
+                                <li><hr class="dropdown-divider m-auto" style="width: 140px;"></li>
+                            </ul>
+                        </div>
                     <?php } else { ?>
                         <a href="entrar.php"><button role="button" style=" border: 2px solid #ffad00" class="btn text-light">Entrar</button></a>
                     <?php } ?>

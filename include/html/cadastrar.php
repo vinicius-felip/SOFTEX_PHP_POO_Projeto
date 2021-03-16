@@ -56,14 +56,14 @@
                 </form>
             </div>
             <div class="tab-pane fade" id="empresa" role="tabpanel" aria-labelledby="empresa-tab">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <fieldset class="text-dark px-3 pt-3 rounded-bottom">
                         <h1 class="h4 mb-3 fw-normal">Informe seus dados, por favor</h1>
-                        <input name="image" placeholder="FOTO" type="file" class="form-control p-1 m-0 mb-3" id="inputGroupFile01" accept="image/x-png">
+                        <input name="image" type="file" class="form-control p-1 m-0 mb-3" accept="image/*">
                         <input name="nome" type="text" class="form-control mb-3" placeholder="Nome Fantasia" required autofocus>
                         <input name="cnpj" type="text" class="form-control mb-3" placeholder="CNPJ" required>
                         <input name="email" type="email" class=" form-control mb-3" placeholder="Email" required>
-                        <div class="input-group mb-3">
+                        <div class="input-  group mb-3">
                             <input name="senha" type="password" class="form-control me-2" placeholder="Senha">
                             <input name="confsenha" type="password" class="form-control" placeholder="Confirme a senha">
                         </div>

@@ -2,9 +2,6 @@
 
 namespace App\src;
 
-use App\db\DataBase;
-use \App\session\Login;
-
 abstract class Usuario
 {
     /**
@@ -42,7 +39,6 @@ abstract class Usuario
      * @param  string $email
      * @return Usuario
      */
-    public static function  getUsuarioEmail($db,$email){
-        return (new DataBase($db))->getSelectDB('email = "'.$email.'"')->fetchObject();
+    public static function  getUsuarioEmail($email){
     }
 }
