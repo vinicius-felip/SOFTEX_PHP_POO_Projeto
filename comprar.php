@@ -5,9 +5,9 @@ use \App\src\Viagem;
 use \App\session\Login;
 use App\src\Pedido;
 
-Login::requireLogin('App\src\Cliente', 'index.php');
+//Login::requireLogin('App\src\Cliente', 'index.php');
 
-if (!isset($_SESSION['usuario']['id_viagem'])) {
+if (!isset($_SESSION['usuario']['id_viage   m'])) {
     $_SESSION['usuario']['id_viagem'] = $_POST['id'];
 }
 

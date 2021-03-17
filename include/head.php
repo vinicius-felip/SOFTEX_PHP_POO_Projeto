@@ -48,6 +48,15 @@ Login::iniciarSession();
             background-color: #000;
             border-color: #000;
         }
+
+         .nav-link {
+            color: black;
+        }
+
+         .nav-link:hover {
+            color: white;
+        }
+        
     </style>
 </head>
 
@@ -59,7 +68,7 @@ Login::iniciarSession();
                     <img src="assets\img\logo-image.png" alt="" width="250px" class="d-inline-block align-top">
                 </a>
                 <button class="navbar-toggler btn-outline-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-caret-square-down"></i>
+                    <i class="fas fa-caret-square-down"></i>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end  text-end" id="navbarTogglerDemo02">
                     <?php if (isset($_SESSION['usuario'])) { ?>
@@ -68,12 +77,18 @@ Login::iniciarSession();
                                 <i class="fas fa-user-circle me-2"></i> Olá, <?= strtok($_SESSION['usuario']['App\src\Cliente']['nome'], " ") ?>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-                                <li><a class="dropdown-item" href="#">Meus pedidos</a></li>
-                                <li><hr class="dropdown-divider m-auto" style="width: 140px;"></li>
-                                <li><a class="dropdown-item" href="#">Minha conta</a></li>
-                                <li><hr class="dropdown-divider m-auto" style="width: 140px;"></li>
+                                <li><a class="dropdown-item" href="cliente.php?pagina=MeusPedidos">Meus pedidos</a></li>
+                                <li>
+                                    <hr class="dropdown-divider m-auto" style="width: 140px;">
+                                </li>
+                                <li><a class="dropdown-item" href="cliente.php?pagina=MinhaConta">Minha conta</a></li>
+                                <li>
+                                    <hr class="dropdown-divider m-auto" style="width: 140px;">
+                                </li>
                                 <li><a class="dropdown-item" href="sair.php">Sair</a></li>
-                                <li><hr class="dropdown-divider m-auto" style="width: 140px;"></li>
+                                <li>
+                                    <hr class="dropdown-divider m-auto" style="width: 140px;">
+                                </li>
                             </ul>
                         </div>
                     <?php } else { ?>

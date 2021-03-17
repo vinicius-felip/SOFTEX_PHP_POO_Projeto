@@ -9,7 +9,7 @@
     <div class="row pb-3">
         <div class="col-2">
             <div class="container">
-                <div class="row border border-dark rounded"  style="background: #ffad00;">
+                <div class="row border border-dark rounded" style="background: #ffad00;">
                     <form method="post">
                         <div class="col-12 mt-3">
                             <label class="fw-bold mb-2">Classificar por:</label>
@@ -72,22 +72,12 @@
             <div class="container">
                 <div class="row ">
                     <div class="col-12 d-flex-inline rounded bg-dark text-light">
-                        <ul class="nav">
-                            <div class="ms-4 me-5 text-center">
-                                <strong class="nav-link">Empresa</strong>
-                            </div>
-                            <div class="me-5" style="margin-left: 32px;">
-                                <strong class="nav-link">Saida</strong>
-                            </div>
-                            <div class="me-5" style="margin-left: 56px;">
-                                <strong class="nav-link">Origem/Destino</strong>
-                            </div>
-                            <div class="me-1" style="margin-left: 130px;">
-                                <strong class="nav-link">Assentos</strong>
-                            </div>
-                            <div class="me-5" style="margin-left: 85px;">
-                                <strong class="nav-link">Preço</strong>
-                            </div>
+                        <ul class="list-group list-group-horizontal">
+                            <li class="list-group-item bg-dark border-0" style="margin-left: 20px;">Empresa</li>
+                            <li class="list-group-item bg-dark border-0" style="margin-left: 90px;">Saída</li>
+                            <li class="list-group-item bg-dark border-0" style="margin-left: 110px;">Origem/Destino</li>
+                            <li class="list-group-item bg-dark border-0" style="margin-left: 190px;">Assentos</li>
+                            <li class="list-group-item bg-dark border-0" style="margin-left: 90px;">Preço</li>
                         </ul>
                     </div>
                     <?php if ($mensagem) { ?>
