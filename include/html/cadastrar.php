@@ -60,7 +60,7 @@
                     </fieldset>
                 </form>
             </div>
-            <div class="tab-pane fade" id="empresa" role="tabpanel" aria-labelledby="empresa-tab">
+            <div class="tab-pane fade mb-4" id="empresa" role="tabpanel" aria-labelledby="empresa-tab">
                 <form method="post" enctype="multipart/form-data">
                     <fieldset class="text-dark px-3 pt-3 rounded-bottom">
                         <h1 class="h4 mb-3 fw-normal">Informe seus dados, por favor</h1>
