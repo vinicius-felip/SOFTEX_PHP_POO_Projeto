@@ -5,7 +5,7 @@ use \App\src\Viagem;
 use \App\session\Login;
 use App\src\Pedido;
 
-//Login::requireLogin('App\src\Cliente', 'index.php');
+Login::requireLogin('cliente', 'index.php');
 
 if (!isset($_SESSION['usuario']['id_viagem'])) {
     $_SESSION['usuario']['id_viagem'] = $_POST['id'];
@@ -14,7 +14,6 @@ if (!isset($_SESSION['usuario']['id_viagem'])) {
 
 $objViagem = new Viagem;
 
-
 if (isset($_GET['finalizar'])) {
     if ($objViagem->diminuirAssento($_SESSION['usuario']['id_viagem'])) {
 
@@ -22,7 +21,7 @@ if (isset($_GET['finalizar'])) {
 
         $objPedido->setValores(
             $_SESSION['usuario']['id_viagem'],
-            $_SESSION['usuario']['App\src\Cliente']['id'],
+            $_SESSION['usuario']['cliente']['id'],
             filter_input(INPUT_POST, 'pagamento', FILTER_SANITIZE_NUMBER_INT),
             filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING),
             filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING),

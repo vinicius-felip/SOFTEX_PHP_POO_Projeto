@@ -47,10 +47,23 @@ class Cliente extends Usuario
   }
 
   /**
-   * Método que verifica o banco de dados através do email
+   * Método que atualiza os dados cadastrais do cliente
    *
+   */
+
+  public static function updateClienteDB($clienteID, $dados)
+  {
+    $objDataBase = new DataBase('cliente');
+    $objDataBase->setUpdateDB($dados,'id ='.$clienteID);
+  }
+
+  /**
+   * Método que verifica o banco de dados através do email
+   * 
+   * @param  string $db
    * @param  string $email
-   * @return Usuario
+   * @param  string $cpf
+   * @return void
    */
   public static function  getClienteCadastro($db, $email, $cpf)
   {
@@ -61,11 +74,11 @@ class Cliente extends Usuario
    * Método que verifica o banco de dados através do email
    *
    * @param  string $email
-   * @return Usuario
+   * @return stdClass
    */
-  public static function  getUsuarioEmail($email)
+  public static function  getUsuario($where)
   {
-    return (new DataBase('cliente'))->getSelectDB('email = "' . $email . '"')->fetchObject();
+    return (new DataBase('cliente'))->getSelectDB($where)->fetchObject();
   }
 
   /**
@@ -74,8 +87,19 @@ class Cliente extends Usuario
    * @param  object Client $objUsuario
    * @param  string $location
    */
-  public static function autenticado($objUsuario)
+  public static function getDados($dados)
   {
-    Login::autenticado($objUsuario, 'index.php', __CLASS__);
+    Login::getDados('cliente', $dados);
+  }
+
+
+  /**
+   * Metodo que deleta dados da $_SESSION do cliente
+   *
+   * @param  array $dados
+   */
+  public static function delDados($dados)
+  {
+    Login::delDados('cliente', $dados);
   }
 }

@@ -4,10 +4,10 @@ require_once __DIR__ . '/vendor/autoload.php';
 use App\session\Login;
 use \App\src\Viagem;
 
-Login::requireLogin('App\src\Empresa', 'index.php');
+Login::requireLogin('empresa', 'index.php');
 
 
-$viagens = Viagem::getViagens('id_empresa = '.$_SESSION['usuario']['App\src\Empresa']['id'], "'id' ASC");
+$viagens = Viagem::getViagens('id_empresa = '.$_SESSION['usuario']['empresa']['id'], "'id' ASC");
 
 
 include_once __DIR__ . '/include/head_empresa.php';
@@ -20,7 +20,7 @@ if (isset($_GET['acao'])) {
             if (isset($_POST['origem'])) {
                 $objViagem = new Viagem();
                 $objViagem->setValores(
-                    $_SESSION['usuario']['App\src\Empresa']['id'],
+                    $_SESSION['usuario']['empresa']['id'],
                     $_POST['origem'],
                     $_POST['destino'],
                     $_POST['data'],

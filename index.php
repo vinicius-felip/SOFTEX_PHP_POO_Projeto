@@ -7,7 +7,7 @@ require_once __DIR__.'/vendor/autoload.php';
 Login::iniciarSession();
 
 if (isset($_SESSION['usuario'])){
-    Login::requireLogin('App\src\Cliente', 'empresa.php');
+    Login::requireLogin('cliente', 'empresa.php');
 }
 
 

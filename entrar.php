@@ -14,27 +14,41 @@ if (isset($_POST['tipo'])) {
     switch ($_POST['tipo']) {
 
         case 'cliente':
-            $objUsuario = Cliente::getUsuarioEmail($_POST['email']);
-            
+            $objUsuario = Cliente::getUsuario('email = "' . $_POST['email'] . '"');
+
             if (!$objUsuario instanceof stdClass || !password_verify($_POST['senha'], $objUsuario->senha)) {
                 $mensagem = true;
                 break;
             }
 
-            Cliente::autenticado($objUsuario);
-            break;
+
+            Cliente::getDados([
+                'id' => $objUsuario->id,
+                'nome' => $objUsuario->nome,
+                'email' => $objUsuario->email,
+            ]);
+            header('location: empresa.php');
+            exit;
 
         case 'empresa':
 
-            $objUsuario = Empresa::getUsuarioEmail($_POST['email']);
+            $objUsuario = Empresa::getUsuario('email = "' . $_POST['email'] . '"');
 
             if (!$objUsuario instanceof stdClass || !password_verify($_POST['senha'], $objUsuario->senha)) {
                 $mensagem = true;
                 break;
             }
-            Empresa::autenticado($objUsuario);
-            break;
-    } 
+
+
+            Empresa::getDados([
+                'id' => $objUsuario->id,
+                'foto' => $objUsuario->foto,
+                'nome' => $objUsuario->nome,
+                'email' => $objUsuario->email,
+            ]);
+            header('location: empresa.php');
+            exit;
+    }
 }
 
 include_once __DIR__ . '/include/html/entrar.php';

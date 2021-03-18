@@ -18,23 +18,38 @@ class Login
 
     /**
      * Metodo que cria a $_SESSION do usuário
-     *
-     * @param object Usuario $objUsuario
+     * @param  string $location
+     * @param  string $user
+     * @param  string $dados
+     * 
      */
-    public static function autenticado($objUsuario, $location, $user)
+    public static function getDados($user, $dados)
     {
         self::iniciarSession();
 
-        $_SESSION['usuario'][$user] = [
-            'id' => $objUsuario->id,
-            'foto' => $objUsuario->foto,
-            'nome' => $objUsuario->nome,
-            'email' => $objUsuario->email,
-        ];
-        header('location: ' . $location);
-        exit;
+        if (!isset($_SESSION['usuario'][$user])) {
+            $_SESSION['usuario'][$user] = array();
+        }
+
+        $_SESSION['usuario'][$user] =  array_merge($_SESSION['usuario'][$user], $dados);
     }
 
+    
+    /**
+     * Metodo que deleta dados da $_SESSION do usuário
+     *
+     * @param  string $user
+     * @param  array $dados
+     * @return void
+     */
+    public static function delDados($user, $dados)
+    {
+        foreach ($dados as $key) {
+            if (isset($_SESSION['usuario'][$user][$key])) {
+                unset($_SESSION['usuario'][$user][$key]);
+            }
+        }
+    }
     /**
      * Método que finaliza a $_SESSION do usuario
      *
@@ -65,13 +80,13 @@ class Login
      *
      */
     public static function requireLogin($user, $location)
-    {   
+    {
         if (!self::validarLogin()) {
             header('location: entrar.php');
             exit;
         }
-        if (!isset($_SESSION['usuario'][$user])){
-            header('location: '.$location);
+        if (!isset($_SESSION['usuario'][$user])) {
+            header('location: ' . $location);
             exit;
         }
     }

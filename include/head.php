@@ -74,14 +74,14 @@ Login::iniciarSession();
                     <?php if (isset($_SESSION['usuario'])) { ?>
                         <div class="btn-group">
                             <button type="button" class="btn dropdown-toggle btn-outline-warning" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                                <i class="fas fa-user-circle me-2"></i> Olá, <?= strtok($_SESSION['usuario']['App\src\Cliente']['nome'], " ") ?>
+                                <i class="fas fa-user-circle me-2"></i> Olá, <?= strtok($_SESSION['usuario']['cliente']['nome'], " ") ?>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-                                <li><a class="dropdown-item" href="cliente.php?pagina=MeusPedidos">Meus pedidos</a></li>
+                                <li><a class="dropdown-item" href="cliente.php?pagina=MinhaConta">Minha conta</a></li>
                                 <li>
                                     <hr class="dropdown-divider m-auto" style="width: 140px;">
                                 </li>
-                                <li><a class="dropdown-item" href="cliente.php?pagina=MinhaConta">Minha conta</a></li>
+                                <li><a class="dropdown-item" href="cliente.php?pagina=MeusPedidos">Meus pedidos</a></li>
                                 <li>
                                     <hr class="dropdown-divider m-auto" style="width: 140px;">
                                 </li>

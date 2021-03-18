@@ -96,7 +96,7 @@ class DataBase
             $result->execute($params);
             return $result;
         } catch (PDOException $e) {
-            die('ERRO'.$e->getCode());
+            die('ERRO' . $e->getCode());
         }
     }
 
@@ -141,11 +141,11 @@ class DataBase
         $order = strlen($order) ? 'ORDER BY ' . $order : '';
         $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
         $innerJoin = strlen($innerJoin) ? 'INNER JOIN ' . $innerJoin : '';
-        
+
         /**
          * Monta a query
          */
-        $query = 'SELECT ' . $campos . ' FROM ' . $this->tabela . ' ' . $innerJoin . ' '. $where .' '. $order . ' ' . $limit;
+        $query = 'SELECT ' . $campos . ' FROM ' . $this->tabela . ' ' . $innerJoin . ' ' . $where . ' ' . $order . ' ' . $limit;
 
         //echo '<pre>'; print_r($query); echo '</pre>'; exit;
 

@@ -37,8 +37,8 @@ abstract class Usuario
      * Método que verifica o banco de dados através do email
      *
      * @param  string $email
-     * @return Usuario
+     * @return stdClass
      */
-    public static function  getUsuarioEmail($email){
+    public static function  getUsuario($where){
     }
 }

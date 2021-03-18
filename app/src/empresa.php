@@ -22,7 +22,7 @@ class Empresa extends Usuario
    * @param  string $cnpj
    * @return void
    */
-  public function setValores($foto,$nome, $email, $senha, $cnpj)
+  public function setValores($foto, $nome, $email, $senha, $cnpj)
   {
     $this->foto = $foto;
     $this->nome = $nome;
@@ -64,21 +64,31 @@ class Empresa extends Usuario
    * Método que verifica o banco de dados através do email
    *
    * @param  string $email
-   * @return Usuario
+   * @return stdClass
    */
-  public static function  getUsuarioEmail($email)
+  public static function  getUsuario($where)
   {
-    return (new DataBase('empresa'))->getSelectDB('email = "' . $email . '"')->fetchObject();
+    return (new DataBase('empresa'))->getSelectDB($where)->fetchObject();
   }
 
   /**
-   * Método que cria uma $_SESSION do cliente quando autenticado
+   * Método que cria uma $_SESSION do empresa quando autenticado
    *
    * @param  object Client $objUsuario
    * @param  string $location
    */
-  public static function autenticado($objUsuario)
+  public static function getDados($dados)
   {
-    Login::autenticado($objUsuario, 'empresa.php', __CLASS__);
+    Login::getDados('empresa', $dados);
+  }
+
+  /**
+   * Metodo que deleta dados da $_SESSION do empresa
+   *
+   * @param  array $dados
+   */
+  public static function delDados($dados)
+  {
+    Login::delDados('empresa', $dados);
   }
 }
