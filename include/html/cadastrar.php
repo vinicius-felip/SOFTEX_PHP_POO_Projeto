@@ -28,6 +28,11 @@
                 E-mail ou CNPJ já está em uso.
                 </div>";
                     break;
+                case 'senha':
+                    echo "<div class='alert alert-danger' role='alert'>
+                    Senhas não coincidem.
+                    </div>";
+                    break;
             }
         } ?>
         <ul class="nav nav-tabs" id="myTab" role="tablist">

@@ -14,8 +14,13 @@ $mensagem = null;
 
 if (isset($_POST['tipo'])) {
     switch ($_POST['tipo']) {
-
         case 'cliente':
+            $confirmacao = $_POST['senha'] != $_POST['confsenha'] ? true : false;
+
+            if ($confirmacao){
+                $mensagem = 'senha';
+                break;
+            }
 
             $objUsuario = Cliente::getClienteCadastro('cliente', $_POST['email'], $_POST['cpf']);
             if ($objUsuario instanceof Usuario) {
@@ -24,17 +29,28 @@ if (isset($_POST['tipo'])) {
             }
 
             $objUsuario = new Cliente;
+
             $objUsuario->setValores($_POST['nome'], $_POST['email'], password_hash($_POST['senha'], PASSWORD_BCRYPT), $_POST['cpf']);
+
             $objUsuario->setClienteDB();
+
             Cliente::getDados([
                 'id' => $objUsuario->id,
                 'nome' => $objUsuario->nome,
                 'email' => $objUsuario->email,
             ]);
+
             header('location: index.php');
             exit;
 
         case 'empresa':
+            $confirmacao = $_POST['senha'] != $_POST['confsenha'] ? true : false;
+
+            if ($confirmacao){
+                $mensagem = 'senha';
+                break;
+            }
+
             $objUsuario = Empresa::getEmpresaCadastro('empresa', $_POST['email'], $_POST['cnpj']);
             if ($objUsuario instanceof Usuario) {
                 $mensagem = 'empresa';
