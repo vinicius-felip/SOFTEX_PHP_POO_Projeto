@@ -3,6 +3,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use App\session\Login;
 use App\src\Cliente;
+use App\src\Pedido;
 use \App\src\Viagem;
 
 Login::requireLogin('cliente', 'index.php');
@@ -13,19 +14,17 @@ include_once __DIR__ . '/include/html/cliente.php';
 
 
 if (in_array('MinhaConta', $_GET) || !isset($_GET['pagina'])) {
-
-
     if (isset($_POST['telefone'])) {
 
         $objEmail = Cliente::getUsuario('email = "' . $_POST['email'] . '"');
-        if ($objEmail instanceof stdClass && $objEmail->id == $_SESSION['usuario']['cliente']['id']) {
+        if ($objEmail instanceof stdClass && $objEmail->id != $_SESSION['usuario']['cliente']['id']) {
+            $_SESSION['mensagem'] = 'error';
+        } else {
             Cliente::updateClienteDB($_SESSION['usuario']['cliente']['id'], [
                 'telefone' => filter_input(INPUT_POST, 'telefone', FILTER_SANITIZE_STRING),
                 'email' => filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING),
             ]);
             $_SESSION['mensagem'] = 'success';
-        } else {
-            $_SESSION['mensagem'] = 'error';
         }
     }
 
@@ -73,7 +72,10 @@ if (in_array('MinhaConta', $_GET) || !isset($_GET['pagina'])) {
             break;
 
         case 'MeusPedidos':
-            $mensagem =  true;
+
+            $pedidos = Pedido::getPedidos("id_viagem = viagem.id and id_empresa = empresa.id and id_cliente ='" . $_SESSION['usuario']['cliente']['id'] . "'",'id DESC',null,'pedido.id, pedido.status, pagamento, pedido.data as data_compra, pedido.nome, pedido.email, telefone, viagem.id_empresa, origem, destino, viagem.data, hora, preco, foto','viagem, empresa');
+
+            $mensagem = count($pedidos) ? false : true;
 
 
             include_once __DIR__ . '/include/html/meuspedidos.php';

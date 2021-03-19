@@ -96,6 +96,7 @@ class Pedido
         $this->id = $objDataBase->setInsertDB([
             'id_viagem' => $this->id_viagem,
             'id_cliente' => $this->id_cliente,
+            'status' => 1,
             'pagamento' => $this->pagamento,
             'nome' => $this->nome,
             'email' => $this->email,
