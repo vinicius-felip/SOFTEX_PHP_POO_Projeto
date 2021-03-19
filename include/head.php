@@ -49,14 +49,13 @@ Login::iniciarSession();
             border-color: #000;
         }
 
-         .nav-link {
+        .nav-link {
             color: black;
         }
 
-         .nav-link:hover {
+        .nav-link:hover {
             color: white;
         }
-        
     </style>
 </head>
 

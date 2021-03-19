@@ -56,7 +56,7 @@
                     </div>
             </div>
             <div class="btn-group mt-2 d-flex justify-content-end">
-                <button type="button" class="btn-lg btn-outline-danger me-1">Cancelar</button>
+                <a href="index.php" type="button" class="btn-lg btn-danger me-1" style="text-decoration: none;">Cancelar</a>
                 <button type="submit" class="btn-lg btn-warning">Comprar</button>
             </div>
             </form>

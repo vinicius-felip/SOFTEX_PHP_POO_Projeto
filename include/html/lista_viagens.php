@@ -97,18 +97,21 @@
                                         </div>
                                     </div>
                                     <div class="col-1 p-0 me-0 text-center">
-                                        <p class="nav-link mb-0 p-0"><?= date("H:m", strtotime($viagens->hora)) ?></p>
-                                        <small class="nav-link mb-0 p-0" style="font-size: 11px;"><?= date("d-m-Y", strtotime($viagens->data)) ?></small>
+                                        <p class=" mb-0 p-0"><?= date("H:m", strtotime($viagens->hora)) ?></p>
+                                        <small class=" mb-0 p-0" style="font-size: 11px;"><?= date("d-m-Y", strtotime($viagens->data)) ?></small>
                                     </div>
                                     <div class="col-4 p-0 me-0 text-center">
-                                        <p class="nav-link mb-0 p-0"><?= $viagens->origem ?></p>
-                                        <p class="nav-link mb-0 p-0"><?= $viagens->destino ?></p>
+                                        <p class=" mb-0 p-0"><?= $viagens->origem ?></p>
+                                        <p class=" mb-0 p-0"><?= $viagens->destino ?></p>
                                     </div>
                                     <div class="col-3 p-0 me-0 text-center">
-                                        <p class="nav-link mb-0 p-0"><b class="bg-success rounded text-light p-1"><?= $viagens->assento ?></b> Lugares disponivéis</p>
+                                        <p class=" mb-0 p-0">
+                                            <b class="bg-success rounded text-light p-1"><?= $viagens->assento ?></b>
+                                            Lugares disponivéis
+                                        </p>
                                     </div>
                                     <div class="col-1 p-0  me-0 text-center">
-                                        <p class="nav-link mb-0 p-0"><b>R$ <?= $viagens->preco ?></b></p>
+                                        <p class=" mb-0 p-0"><b>R$ <?= $viagens->preco ?></b></p>
                                     </div>
                                     <div class="col-auto p-0 me-2 ms-auto">
                                         <a type="button" class=" btn-sm  btn-warning text-dark" data-bs-toggle="modal" data-bs-target="#ViagemID<?= $viagens->id ?>"><i class="fas fa-shopping-cart"></i></a>

@@ -147,8 +147,6 @@ class DataBase
          */
         $query = 'SELECT ' . $campos . ' FROM ' . $this->tabela . ' ' . $innerJoin . ' ' . $where . ' ' . $order . ' ' . $limit;
 
-        //echo '<pre>'; print_r($query); echo '</pre>'; exit;
-
         return $this->execute($query);
     }
 
