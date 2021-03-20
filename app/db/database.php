@@ -186,8 +186,7 @@ class DataBase
          * Monta da query
          */
         $query = 'DELETE FROM ' . $this->tabela . ' WHERE ' . $where;  
-
-        echo '<pre>'; print_r($query); echo '</pre>'; exit;
+        
 
         $this->execute($query);
         return true;
