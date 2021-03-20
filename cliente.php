@@ -4,7 +4,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 use App\session\Login;
 use App\src\Cliente;
 use App\src\Pedido;
-use \App\src\Viagem;
 
 Login::requireLogin('cliente', 'index.php');
 

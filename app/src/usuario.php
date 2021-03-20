@@ -34,7 +34,7 @@ abstract class Usuario
     
         
     /**
-     * Método que verifica o banco de dados através do email
+     * Método que retornar os dados do banco de dados do usuario 
      *
      * @param  string $email
      * @return stdClass

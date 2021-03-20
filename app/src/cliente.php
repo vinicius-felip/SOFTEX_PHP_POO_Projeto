@@ -8,7 +8,12 @@ use \App\session\Login;
 
 
 class Cliente extends Usuario
-{
+{  
+  /**
+   * CPF do cliente
+   *
+   * @var mixed
+   */
   public $cpf;
 
   /**
