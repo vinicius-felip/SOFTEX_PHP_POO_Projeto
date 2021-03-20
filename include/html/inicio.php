@@ -7,7 +7,7 @@
                         <div class="col-12">
                             <div class="input-group mb-3">
                                 <span class="input-group-text bg-white border-0 " id="basic-addon1"><i class="fas fa-location-arrow"   style="width: 16px; height: 16px;"></i></span>
-                                <input required name="origem" id="origem" type="text" class="form-control border-0" placeholder="Digite aqui sua origem" aria-describedby="basic-addon1" readonly onfocus="this.removeAttribute('readonly');">
+                                <input required name="origem" id="origem" type="text" class="form-control border-0" placeholder="Digite aqui sua origem" aria-describedby="basic-addon1">
                             </div>
                         </div>
                         <div class="col-12">

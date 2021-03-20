@@ -13,7 +13,6 @@
         var cidades = <?php echo json_encode($autocompleteOrigem) ?>;
         $("#origem").autocomplete({
             source: cidades,
-            minLength: 3
         });
         console.log(cidades)
     });
