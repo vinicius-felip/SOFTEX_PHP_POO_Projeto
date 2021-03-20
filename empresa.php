@@ -37,13 +37,11 @@ if (isset($_GET['acao'])) {
             include_once __DIR__ . '/include/html/inserir_viagem.php';
             break;
 
-        case 'alterar':
-
-            include_once __DIR__ . '/include/html/alterar_viagem.php';
-            break;
-
         case 'deletar':
 
+            if (Viagem::delViagemDB("id = ".$_GET['id'])){
+                header('location: empresa.php');
+            }
             break;
     }
 } else {

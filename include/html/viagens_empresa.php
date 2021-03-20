@@ -22,7 +22,6 @@
                     <td><?= $viagens->assento ?></td>
                     <td><?= $viagens->preco ?></td>
                     <td class="text-center">
-                        <a class="text-warning me-2" href="?acao=alterar&id=<?= $viagens->id ?>"><i class="fas fa-pen"></i></a>
                         <a type="button" class="text-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $viagens->id ?>"><i class="fas fa-trash"></i></a>
                     </td>
                     <!-- Excluir viagem -->

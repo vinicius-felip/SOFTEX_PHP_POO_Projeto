@@ -175,6 +175,25 @@ class DataBase
     }
 
     /**
+     * Método que deleta uma linha do banco de dados
+     *
+     * @param  string $where
+     * @return boolean
+     */
+    public function setDeleteDB($where)
+    {
+        /**
+         * Monta da query
+         */
+        $query = 'DELETE FROM ' . $this->tabela . ' WHERE ' . $where;  
+
+        echo '<pre>'; print_r($query); echo '</pre>'; exit;
+
+        $this->execute($query);
+        return true;
+    }
+
+    /**
      * Método que incrementa valores no banco de dados
      *
      * @param  string $alterar

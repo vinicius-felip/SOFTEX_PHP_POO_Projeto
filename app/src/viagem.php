@@ -7,10 +7,17 @@ use \App\db\DataBase;
 use \PDO;
 
 interface ViagemTemplate{
-
+  
+  /**
+   * 
+   *
+   * @param  mixed $id
+   * @return void
+   */
   public function diminuirAssento($id);
   public function setValores($id_empresa, $origem, $destino, $data, $hora, $preco, $assentos);
   public function setViagemDB();
+  
 
 }
 
@@ -131,6 +138,13 @@ class Viagem implements ViagemTemplate
   public static function getViagens($where = null, $order = null,   $limit = null, $campo = '*', $innerJoin = null)
   {
     return (new DataBase('viagem'))->getSelectDB($where, $order, $limit, $campo, $innerJoin)->fetchAll(PDO::FETCH_CLASS, self::class);
+  }
+
+  public static function delViagemDB($where){
+    $objDataBase = new DataBase('viagem');
+    $sucesso = $objDataBase->setDeleteDB($where);
+    if ($sucesso) return true;
+    return false;
   }
 
   /**

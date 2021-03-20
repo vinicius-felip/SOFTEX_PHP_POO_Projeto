@@ -8,9 +8,19 @@ use \App\session\Login;
 
 
 class Empresa extends Usuario
-{
+{  
+  /**
+   * CNPJ da empresa
+   *
+   * @var mixed
+   */
   public $cnpj;
-
+  
+  /**
+   * Logo da empresa
+   *
+   * @var mixed
+   */
   public $foto;
 
   /**
